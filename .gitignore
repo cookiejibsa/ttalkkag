@@ -1,0 +1,17 @@
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Env / secrets
+.env
+.env.*
+
+# Node (혹시 나중에 쓸 경우)
+node_modules/

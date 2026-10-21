@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>딸깍 - 워크스페이스</title>
+  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html"> <!-- 로고 + "딸깍" (소개 페이지로 이동) -->
+      <img id="brand-logo" src="assets/icons/logo-mono.svg" alt="로고">
+      <div id="brand-name">딸깍</div>
+    </a>
+    <div class="top-divider" aria-hidden="true"></div> <!-- 로고와 입력 필드 사이 구분선 -->
+    <input id="project-name" type="text" name="projectName" placeholder="프로젝트 이름을 입력해주세요"> <!-- 프로젝트 이름 -->
+    <div class="toolbar-actions"> <!-- 새 탭 / 내보내기 / 저장 / 불러오기 / 초기화 버튼 -->
+      <button class="toolbar-btn" data-action="new-tab"><img class="btn-icon" src="assets/icons/new-tab.svg" alt="새 탭">새 탭</button>
+      <button class="toolbar-btn" data-action="export"><img class="btn-icon" src="assets/icons/export.svg" alt="내보내기">내보내기</button>
+      <button class="toolbar-btn" data-action="save"><img class="btn-icon" src="assets/icons/save.svg" alt="저장">저장</button>
+      <button class="toolbar-btn" data-action="load"><img class="btn-icon" src="assets/icons/load.svg" alt="불러오기">불러오기</button>
+      <button class="toolbar-btn" data-action="reset"><img class="btn-icon" src="assets/icons/reset.svg" alt="초기화">초기화</button>
+    </div>
+  </header>
+  <hr id="header-divider">
+  <main>
+    <section class="controls"> <!-- 태그 선택 / 속성 편집 / 제작 영역 -->
+      <aside class="tag-list"> <!-- html 태그 종류 (좌측 목록) -->
+        <div class="tag-category"></div>
+        <div class="tag-chip"></div>
+      </aside>
+      
+      <section class="workspace"> <!-- 속성 편집 & 태그 제작 -->
+        <div class="attr-panel"></div>
+        <div class="preview-make"> <!-- 태그 미리보기 및 제작 영역 -->
+          <div class="tag-preview"></div>
+          <button type="button" class="make-action">제작</button>
+        </div>
+      </section>
+    </section>
+    
+    <section class="output"> <!-- 결과 확인 영역 -->
+      <div class="render-pane">
+        <button class="pane-btn" type="button">새 탭</button>
+      </div>
+      <div class="splitter"></div>
+      <div class="code-pane">
+        <button class="pane-btn" type="button" data-action="copy-code">복사</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

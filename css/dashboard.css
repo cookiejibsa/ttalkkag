@@ -1,0 +1,153 @@
+/* mypage.css — 마이페이지 겸 대시보드 레이아웃 (프로필 띠 + 프로젝트 갤러리) */
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto; /* 프로젝트가 많아지면 main 안에서 스크롤 */
+}
+
+/* ========== 프로필 ========== */
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 4rem;
+  height: 12rem;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-avatar {
+  flex-shrink: 0;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-strong);
+}
+
+#profile-name {
+  height: 3rem;
+  width: 20rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#profile-name:hover {
+  border-bottom-color: var(--text-muted);
+}
+
+#profile-name:focus {
+  border-bottom-color: var(--text-muted);
+}
+
+.profile-stats {
+  display: flex;
+  margin-left: auto;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 9rem;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--border);
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.stat-label {
+  color: var(--text-muted);
+}
+
+/* ========== 갤러리 ========== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 4rem;
+  margin: 0 auto;
+  padding: 2.5rem 4rem 4rem;
+  max-width: 72rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+
+.project-card:hover {
+  border-color: var(--text-muted);
+}
+
+.card-thumb {
+  aspect-ratio: 16 / 9;
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border);
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  height: 3rem;
+}
+
+.card-name {
+  font-weight: bold;
+}
+
+.card-date {
+  color: var(--text-muted);
+}
+
+.new-card {
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 15rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-muted);
+  background: transparent;
+  border: 2px dashed var(--border-strong);
+}
+
+.new-card:hover {
+  color: var(--text);
+  border-color: var(--accent-blue);
+  background: var(--accent-blue-dim);
+}
+
+.new-card-icon {
+  width: 2rem;
+  opacity: 0.6;
+}
+
+.new-card:hover .new-card-icon {
+  opacity: 1;
+}

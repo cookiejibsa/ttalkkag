@@ -1,0 +1,104 @@
+/* header.css - 상단바 설정 */
+
+header {
+  margin: 0.5rem 0 0.25rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  margin-left: 2rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#brand-logo {
+  height: 3rem;
+}
+
+#brand-name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.top-divider {
+  margin: 0 1.5rem;
+  width: 0.2rem;
+  height: 2rem;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+#project-name {
+  height: 2.5rem;
+  width: 20rem;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#project-name:hover {
+  border-bottom-color: var(--text-muted);
+}
+
+#project-name:focus {
+  border-bottom-color: var(--text-muted);
+}
+
+.toolbar-actions {
+  margin: 0 4rem 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.toolbar-btn {
+  margin-left: 0.1rem;
+  padding: 0 1rem;
+  height: 2.5rem;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.toolbar-btn>img {
+  width: 1rem;
+}
+
+[data-action="save"], [data-action="reset"] {
+  margin-left: 1.1rem;
+}
+
+[data-action="reset"]:hover {
+  background: var(--accent-red-hover);
+}
+
+#header-divider {
+  height: 0.25rem;
+  background-color: var(--border-strong);
+}
+/* 페이지 이동용 링크 버튼 (index / mypage). <a>는 reset의 button 스타일을 못 받으므로 따로 맞춤 */
+a.toolbar-btn {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+a.toolbar-btn:hover {
+  background: var(--bg-hover);
+}
+
+a[data-action="new-project"] {
+  margin-left: 1.1rem;
+  border-color: var(--accent-blue);
+}
+
+a[data-action="new-project"]:hover {
+  background: var(--accent-blue-dim);
+}

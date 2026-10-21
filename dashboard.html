@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>딸깍 - 대시보드</title>
+  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html"> <!-- 로고 + "딸깍" (소개 페이지로 이동) -->
+      <img id="brand-logo" src="assets/icons/logo-mono.svg" alt="로고">
+      <div id="brand-name">딸깍</div>
+    </a>
+    <nav class="toolbar-actions"> <!-- 새 프로젝트 -->
+      <a class="toolbar-btn" data-action="new-project" href="workspace.html"><img class="btn-icon" src="assets/icons/plus.svg" alt="새 프로젝트">새 프로젝트</a>
+    </nav>
+  </header>
+  <hr id="header-divider">
+  <main>
+    <section class="profile"> <!-- 사용자 간략 정보 (v2, 삭제될 수 있음) -->
+      <div class="profile-avatar"></div>
+      <input id="profile-name" type="text" name="profileName" placeholder="이름을 입력해주세요"> <!-- 사용자 이름 -->
+      <ul class="profile-stats">
+        <li class="stat">
+          <span class="stat-value" data-stat="days">-</span>
+          <span class="stat-label">함께한 날</span>
+        </li>
+        <li class="stat">
+          <span class="stat-value" data-stat="projects">-</span>
+          <span class="stat-label">프로젝트</span>
+        </li>
+        <li class="stat">
+          <span class="stat-value" data-stat="last-edited">-</span>
+          <span class="stat-label">마지막 작업</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="gallery"> <!-- 기존 프로젝트 미리보기. 카드는 저장된 프로젝트로 JS가 채울 예정 (v2) -->
+      <a class="project-card" href="workspace.html">
+        <div class="card-thumb"></div> <!-- 렌더링 미리보기 -->
+        <div class="card-meta">
+          <div class="card-name">프로젝트 이름</div>
+          <div class="card-date">마지막 수정 -</div>
+        </div>
+      </a>
+      <a class="project-card" href="workspace.html">
+        <div class="card-thumb"></div>
+        <div class="card-meta">
+          <div class="card-name">프로젝트 이름</div>
+          <div class="card-date">마지막 수정 -</div>
+        </div>
+      </a>
+      <a class="project-card" href="workspace.html">
+        <div class="card-thumb"></div>
+        <div class="card-meta">
+          <div class="card-name">프로젝트 이름</div>
+          <div class="card-date">마지막 수정 -</div>
+        </div>
+      </a>
+      <a class="project-card new-card" href="workspace.html"> <!-- 항상 마지막 칸 -->
+        <img class="new-card-icon" src="assets/icons/plus.svg" alt="">
+        <span>새 프로젝트</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
