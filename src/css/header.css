@@ -17,11 +17,13 @@ header {
 
 #brand-logo {
   height: 3rem;
+  user-select: none;
 }
 
 #brand-name {
   font-size: 2rem;
   font-weight: bold;
+  user-select: none;
 }
 
 .top-divider {
