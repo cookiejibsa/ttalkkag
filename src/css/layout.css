@@ -128,3 +128,20 @@ main {
   background: var(--accent-blue-dim);
 }
 
+/* 크롬, 사파리, 최신 엣지, 오페라에서 스크롤바 강제 숨김 */
+main *,
+.no-scrollbar,
+.tag-list,
+.attr-panel,
+.code-pane {
+  -ms-overflow-style: none !important; /* IE */
+  scrollbar-width: none !important; /* 파이어폭스 */
+}
+
+main *::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar,
+.tag-list::-webkit-scrollbar,
+.attr-panel::-webkit-scrollbar,
+.code-pane::-webkit-scrollbar {
+  display: none !important; /* 크롬, 사파리 계열 강제 적용 */
+}

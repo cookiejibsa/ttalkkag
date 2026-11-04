@@ -23,7 +23,11 @@ body {
   height: 100%;
   background: var(--bg-app);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
   font-size: 14px;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
@@ -99,4 +103,14 @@ table {
 code,
 pre {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* 🔥 [추가] 크롬, 파이어폭스 등 모든 브라우저 스크롤 기능 유지 + 스크롤바 숨김 클래스 */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE 및 구형 엣지 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 최신 엣지, 오페라 */
 }
