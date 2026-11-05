@@ -12,13 +12,13 @@
 </head>
 <body>
   <header>
-    <a class="brand" href="index.html"> <!-- 로고 + "딸깍" -->
+    <a class="brand" id="brand" title="홈 화면으로 돌아갑니다."> <!-- 로고 + "딸깍" -->
       <img id="brand-logo" src="assets/icons/logo-mono.svg" alt="로고">
       <div id="brand-name">딸깍</div>
     </a>
     <nav class="toolbar-actions"> <!-- 대시보드 / 새 프로젝트 -->
-      <a class="toolbar-btn" data-action="dashboard" href="./src/pages/dashboard.html"><img class="btn-icon" src="assets/icons/dashboard.svg" alt="대시보드">대시보드</a>
-      <a class="toolbar-btn" data-action="new-project" href="./src/pages/workspace.html"><img class="btn-icon" src="assets/icons/plus.svg" alt="새 프로젝트">새 프로젝트</a>
+      <a class="toolbar-btn" data-action="dashboard" href="./src/pages/dashboard.html" title="대시보드로 이동합니다."><img class="btn-icon" src="assets/icons/dashboard.svg" alt="대시보드">대시보드</a>
+      <a class="toolbar-btn" data-action="new-project" href="./src/pages/workspace.html" title="새로운 프로젝트를 생성합니다."><img class="btn-icon" src="assets/icons/plus.svg" alt="새 프로젝트">새 프로젝트</a>
     </nav>
   </header>
   <hr id="header-divider">
@@ -27,5 +27,6 @@
       <p class="intro-placeholder">페이지 소개</p>
     </section>
   </main>
+  <script src="./src/js/index.js"></script>
 </body>
 </html>
