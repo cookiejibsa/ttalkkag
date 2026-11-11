@@ -31,21 +31,24 @@
       />
       <!-- 프로젝트 이름 -->
       <div class="toolbar-actions">
-        <!-- 새 탭 / 내보내기 / 저장 / 불러오기 / 초기화 버튼 -->
-        <button class="toolbar-btn" data-action="new-tab">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/new-tab.svg"
-            alt="새 탭"
-          />새 탭
-        </button>
-        <button class="toolbar-btn" data-action="export">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/export.svg"
-            alt="내보내기"
-          />내보내기
-        </button>
+        <a href="./hello.html" target="content"
+          ><button class="toolbar-btn" data-action="new-tab">
+            <img
+              class="btn-icon"
+              src="../../assets/icons/new-tab.svg"
+              alt="새 탭"
+            />새 탭
+          </button>
+        </a>
+        <a href="./hello.html" download>
+          <button class="toolbar-btn" data-action="export">
+            <img  
+              class="btn-icon"
+              src="../../assets/icons/export.svg"
+              alt="내보내기"
+            />내보내기
+          </button>
+        </a>
         <button class="toolbar-btn" data-action="save">
           <img
             class="btn-icon"
@@ -73,8 +76,7 @@
     <main>
       <section class="controls">
         <!-- 태그 선택 / 속성 편집 / 제작 영역 -->
-        <!-- 💡 좌측 태그 목록: no-scrollbar 클래스 추가 -->
-        <aside class="tag-list no-scrollbar">
+        <aside class="tag-list">
           <!-- html 태그 종류 (좌측 목록) -->
           <div class="tag-category"></div>
           <div class="tag-chip"></div>
@@ -82,8 +84,7 @@
 
         <section class="workspace">
           <!-- 속성 편집 & 태그 제작 -->
-          <!-- 💡 속성 편집 패널: no-scrollbar 클래스 추가 -->
-          <div class="attr-panel no-scrollbar"></div>
+          <div class="attr-panel"></div>
           <div class="preview-make">
             <!-- 태그 미리보기 및 제작 영역 -->
             <div class="tag-preview"></div>
@@ -96,10 +97,10 @@
         <!-- 결과 확인 영역 -->
         <div class="render-pane">
           <button class="pane-btn" type="button">새 탭</button>
+          <iframe name="content" src="about:blank"></iframe>
         </div>
         <div class="splitter"></div>
-        <!-- 💡 우측 코드 창: no-scrollbar 클래스 추가 -->
-        <div class="code-pane no-scrollbar">
+        <div class="code-pane">
           <button class="pane-btn" type="button" data-action="copy-code">
             복사
           </button>
