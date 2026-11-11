@@ -23,8 +23,29 @@ main {
   border-bottom: 1px solid var(--border);
 }
 
+#imageInput {
+  display: none;
+  position: absolute;
+}
+.camera {
+  opacity:0;
+  position: absolute;
+  margin-top:-6rem;
+  flex-shrink: 0;
+  padding:0;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-strong);                                                                                                                                                                                
+}
+.camera:hover {
+  opacity:0.6;                                                                                                                                                                           
+}
+
 .profile-avatar {
   flex-shrink: 0;
+  padding:0;
   width: 6rem;
   height: 6rem;
   border-radius: 50%;

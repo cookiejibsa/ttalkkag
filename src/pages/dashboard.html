@@ -23,7 +23,11 @@
   <hr id="header-divider">
   <main>
     <section class="profile"> <!-- 사용자 간략 정보 (v2, 삭제될 수 있음) -->
-      <div class="profile-avatar"></div>
+      <input type="file" id="imageInput" accept="image/*">
+      <label for="imageInput" style="position:relative">
+        <img class="profile-avatar">
+        <img class="camera" src="/assets/icons/camera.png">
+      </label>
       <input id="profile-name" type="text" name="profileName" placeholder="이름을 입력해주세요"> <!-- 사용자 이름 -->
       <ul class="profile-stats">
         <li class="stat">
@@ -69,5 +73,6 @@
       </a>
     </section>
   </main>
+  <script src="/src/js/profile.js"></script>
 </body>
 </html>

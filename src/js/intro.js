@@ -1,1 +1,6 @@
 // intro.js — 소개 페이지 엔트리포인트 (소개 구성 확정 후 인터랙션 추가)
+
+document.getElementById("brand").addEventListener('click', () => {
+    location.href = "index.html";
+});
+
