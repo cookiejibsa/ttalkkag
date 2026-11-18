@@ -18,6 +18,8 @@ header {
 #brand-logo {
   height: 3rem;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 #brand-name {
