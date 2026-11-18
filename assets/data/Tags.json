@@ -1,0 +1,12 @@
+[
+    {
+        "tagId": "html",
+        "needCloseTag": true,
+        "attributes": [
+            {
+                "name": "lang",
+                "value": "ko"
+            }
+        ]
+    }
+]

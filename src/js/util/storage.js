@@ -40,7 +40,8 @@ function isExists(itemId, item) {
  * 로컬 스토리지에서 사용되는 식별자
  */
 export const ItemType = Object.freeze({
-    Projects: "project"
+    Projects: "project",
+    Profile: "profile"
 });
 
 /**

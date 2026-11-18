@@ -1,1 +1,6 @@
 // main.js — 엔트리포인트, 모듈 초기화 및 연결
+import { LoadAsync } from "./util/data.js"
+
+window.addEventListener('DOMContentLoaded', async () => {
+    await LoadAsync();
+});
