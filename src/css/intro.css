@@ -1,5 +1,6 @@
 /* intro.css — 소개 페이지 레이아웃 (index.html) */
 
+/* body가 flex 컬럼이어야 main의 flex:1 이 먹음 (reset에서 body overflow:hidden) */
 body {
   display: flex;
   flex-direction: column;
@@ -11,16 +12,293 @@ main {
   overflow-y: auto; /* 소개 내용이 길어지면 main 안에서 스크롤  */
 }
 
-.intro {
+/* ========== 히어로 섹션 ========== */
+
+.intro-page {
+  position: relative;
+  height: 100%;
+  min-height: 36rem;
+  padding: 2rem 2rem 5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100%;
-  background: var(--bg-app);
+  overflow: hidden; /* 떠다니는 장식이 섹션 밖으로 안 나가게 */
 }
 
-.intro-placeholder {
+.hero-content {
+  position: relative;
+  z-index: 1; /* 장식 레이어보다 위 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-eyebrow {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+}
+
+#hero-title {
+  font-size: clamp(4rem, 13vw, 10rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  cursor: default;
+
+  /* 무지개 그라데이션은 항상 깔아두고, 평소엔 글자색으로 덮어둠 */
+  background-image: linear-gradient(
+    90deg,
+    #ff2b2b, #ff8a00, #ffe600, #2bd96b, #2bb7ff, #6a5cff, #d14bff, #ff2b2b
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: var(--text);
+  /* 그라데이션은 늘 흐르게 둬서 hover 진입/이탈 때 위치가 튀지 않게 */
+  animation: rainbow-flow 6s linear infinite;
+  transition: -webkit-text-fill-color 0.8s ease;
+}
+
+#hero-title:hover {
+  -webkit-text-fill-color: transparent; /* 흰색이 서서히 빠지며 무지개가 드러남 */
+}
+
+@keyframes rainbow-flow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 200% 50%; }
+}
+
+.hero-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-tagline {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.hero-start-button {
+  /* 상단 .toolbar-btn 과 같은 틀 — hover 시 색만 바뀜 */
+  margin-top: 1rem;
+  padding: 0 1rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+  background: var(--accent-red);
+  border: 1px solid var(--accent-red);
+  border-radius: var(--radius);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.hero-start-button:hover {
+  background: var(--accent-red-hover);
+  border-color: var(--accent-red-hover);
+}
+
+.hero-start-button:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+/* ========== 떠다니는 장식 ==========
+   색은 tokens.css 의 --intro-* (네온) 만 사용.
+   빨강 계열은 시작 버튼과 겹치지 않게 장식에서 뺌 */
+
+.project-image-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-item {
+  --rot: 0deg;              /* 아이템별 기울기 */
+  --c: var(--intro-cyan);   /* 아이템별 네온색 */
+  position: absolute;
+  padding: 0.5rem 0.9rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.1rem;
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
+  border-radius: var(--radius);
+  box-shadow: 0 0 0.75rem color-mix(in srgb, var(--c) 25%, transparent); /* 은은한 네온 번짐 */
+  text-shadow: 0 0 0.5rem color-mix(in srgb, var(--c) 45%, transparent);
+  transform: rotate(var(--rot));
+  animation: float 4.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+  50%      { transform: translateY(-1.4rem) rotate(calc(var(--rot) * -0.4)); }
+}
+
+.tag-heading {
+  --rot: -6deg;
+  --c: var(--intro-cyan);
+  top: 20%;
+  left: 18%;
+  font-size: 1.6rem;
+}
+
+.tag-button {
+  --rot: 4deg;
+  --c: var(--intro-magenta);
+  bottom: 24%;
+  left: 25%;
+  animation-delay: -1.5s;
+}
+
+.tag-attribute {
+  --rot: 8deg;
+  --c: var(--intro-lime);
+  top: 22%;
+  right: 21%;
+  font-size: 1.4rem;
+  animation-delay: -3s;
+}
+
+.preview-card {
+  --rot: -3deg;
+  --c: var(--intro-cyan);
+  bottom: 22%;
+  right: 15%;
+  width: 12rem;
+  padding: 0.9rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: inherit;
+  background: var(--intro-card);
+  text-shadow: none;
+  animation-delay: -2s;
+}
+
+.preview-label {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--intro-cyan);
+}
+
+.preview-title {
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.preview-line {
+  display: block;
+  height: 2px;
+  width: 60%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--intro-lime) 45%, transparent); /* 은은하게만 */
+}
+
+.click-sticker {
+  --rot: -10deg;
+  --c: var(--intro-violet);
+  top: 46%;
+  left: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--intro-ink);
+  background: var(--c);
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  text-shadow: none;
+  animation-delay: -4s;
+}
+
+.click-sticker strong {
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+}
+
+.drag-sticker {
+  --rot: 6deg;
+  --c: var(--intro-yellow);
+  top: 44%;
+  right: 11%;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  border-style: dashed;
+  animation-delay: -0.8s;
+}
+
+/* ========== 하단 바 ========== */
+
+.hero-bottom {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  bottom: 1.5rem;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+}
+
+.hero-process {
   color: var(--text-faint);
+}
+
+.hero-scroll {
+  color: var(--text-muted);
+  transition: color 0.15s;
+}
+
+.hero-scroll:hover {
+  color: var(--text);
+}
+
+/* ========== 반응형 / 접근성 ========== */
+
+@media (max-width: 768px) {
+  .tag-attribute,
+  .drag-sticker,
+  .preview-card {
+    display: none; /* 좁은 화면에선 장식 줄임 */
+  }
+
+  .hero-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-item,
+  #hero-title {
+    animation: none;
+  }
 }

@@ -23,8 +23,50 @@
   </header>
   <hr id="header-divider">
   <main>
-    <section class="intro"> <!-- 페이지 소개 -->
-      <p class="intro-placeholder">페이지 소개</p>
+    <section class="intro-page"> <!-- 페이지 소개 -->
+      <div class="hero-content">
+        <div class="hero-title">
+          <p class="hero-eyebrow">MAKE YOUR FIRST WEB PAGE</p>
+          <h1 id="hero-title">TTALKKAG</h1>
+        </div>
+
+        <div class="hero-description">
+          <p class="hero-tagline">태그를 고르고, 화면을 만들고, 딸깍!</p>
+          <p class="hero-subtitle">
+            처음 만나는 HTML, 직접 조립하며 가볍게 시작하세요.
+          </p>
+          <a class="hero-start-button" href="./src/pages/workspace.html">
+            프로젝트 시작하기 ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 주변에 떠 있는 장식 요소 -->
+      <div class="project-image-layer" aria-hidden="true">
+        <div class="floating-item tag-heading">&lt;h1&gt;</div>
+
+        <div class="floating-item tag-button">&lt;button&gt;</div>
+
+        <div class="floating-item tag-attribute">{ }</div>
+
+        <div class="floating-item preview-card">
+          <span class="preview-label">PREVIEW</span>
+          <strong class="preview-title">안녕하세요!</strong>
+          <span class="preview-line"></span>
+        </div>
+
+        <div class="floating-item click-sticker">
+          <span>태그를 골라</span>
+          <strong>딸깍!</strong>
+        </div>
+
+        <div class="floating-item drag-sticker">DRAG &amp; DROP</div>
+      </div>
+
+      <div class="hero-bottom">
+        <p class="hero-process">SELECT / EDIT / PLACE</p>
+        <a class="hero-scroll" href="#introduction">SCROLL TO EXPLORE ↓</a>
+      </div>
     </section>
   </main>
   <script src="./src/js/index.js"></script>
