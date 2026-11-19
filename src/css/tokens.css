@@ -33,6 +33,24 @@
   --danger:            var(--accent-red);         /* 초기화 확인 모달의 확정 버튼만. 상단 [초기화] 자체는 무채색 유지 */
   --focus-ring:        var(--accent-blue);        /* input, button, 태그 리스트 키보드 포커스 outline */
 
+  /* ========== intro — 소개 페이지(index.html) 떠다니는 장식 전용. 다른 곳에서 쓰지 말 것 ==========
+     다크 바탕용 네온. 채도는 살리고 명도는 한 톤 눌러서 눈부시지 않게 */
+  --intro-cyan:        #3ce8ff;                   /* <h1> 칩, 미리보기 카드 테두리 */
+  --intro-magenta:     #f05bff;                   /* <button> 칩 */
+  --intro-lime:        #a8ff3e;                   /* { } 칩, 미리보기 밑줄 */
+  --intro-violet:      #8f7bff;                   /* CLICK! 스티커 바탕 */
+  --intro-yellow:      #ffe94a;                   /* DRAG & DROP 점선 */
+  --intro-ink:         #0b0820;                   /* 네온 바탕 위 글자 */
+  --intro-card:        #0f1420;                   /* 미리보기 카드 바탕 */
+  --intro-cyan-soft:     rgba(60, 232, 255, 0.08);   /* 칩 바탕 (아주 옅게) */
+  --intro-cyan-glow:     rgba(60, 232, 255, 0.4);    /* 칩 테두리, 빛 번짐 */
+  --intro-magenta-soft:  rgba(240, 91, 255, 0.08);
+  --intro-magenta-glow:  rgba(240, 91, 255, 0.4);
+  --intro-lime-soft:     rgba(168, 255, 62, 0.08);
+  --intro-lime-glow:     rgba(168, 255, 62, 0.4);
+  --intro-yellow-soft:   rgba(255, 233, 74, 0.08);
+  --intro-yellow-glow:   rgba(255, 233, 74, 0.4);
+
   /* ========== layout ========== */
   --radius:            0.25rem;                   /* 버튼, 입력, 작은 칩. 패널 외곽은 0에 가깝게 가도 됨 */
   --toolbar-h:         3.5rem;                    /* 상단바 높이 */
