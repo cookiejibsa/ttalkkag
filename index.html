@@ -10,40 +10,39 @@
     <link rel="stylesheet" href="./src/css/header.css" />
     <link rel="stylesheet" href="./src/css/intro.css" />
   </head>
+
   <body>
     <header>
       <a class="brand" id="brand" title="홈 화면으로 돌아갑니다.">
-        <!-- 로고 + "딸깍" -->
         <img id="brand-logo" src="assets/icons/logo-mono.svg" alt="로고" />
         <div id="brand-name">딸깍</div>
       </a>
+
       <nav class="toolbar-actions">
-        <!-- 대시보드 / 새 프로젝트 -->
         <a
           class="toolbar-btn"
           data-action="dashboard"
           href="./src/pages/dashboard.html"
           title="대시보드로 이동합니다."
-          ><img
-            class="btn-icon"
-            src="assets/icons/dashboard.svg"
-            alt="대시보드"
-          />대시보드</a
         >
+          <img class="btn-icon" src="assets/icons/dashboard.svg" alt="" />
+          대시보드
+        </a>
+
         <a
           class="toolbar-btn"
           data-action="new-project"
           href="./src/pages/workspace.html"
           title="새로운 프로젝트를 생성합니다."
-          ><img
-            class="btn-icon"
-            src="assets/icons/plus.svg"
-            alt="새 프로젝트"
-          />새 프로젝트</a
         >
+          <img class="btn-icon" src="assets/icons/plus.svg" alt="" />
+          새 프로젝트
+        </a>
       </nav>
     </header>
+
     <hr id="header-divider" />
+
     <main>
       <section class="intro-page">
         <!-- 페이지 소개 -->
@@ -55,43 +54,56 @@
 
           <div class="hero-description">
             <p class="hero-tagline">태그를 고르고, 화면을 만들고, 딸깍!</p>
+
             <p class="hero-subtitle">
               처음 만나는 HTML, 직접 조립하며 가볍게 시작하세요.
             </p>
+
             <a class="hero-start-button" href="./src/pages/workspace.html">
               프로젝트 시작하기 ↗
             </a>
           </div>
         </div>
 
-        <!-- 주변에 떠 있는 장식 요소 -->
-        <div class="project-image-layer" aria-hidden="true">
-          <div class="floating-item tag-heading">h1/div>
+        <!-- HTML 편집 과정 안내 -->
+        <div class="hero-description">
+          <p class="hero-tagline">SELECT / EDIT / PLACE</p>
 
-          <div class="floating-item tag-button">button</div>
+          <p class="hero-subtitle">
+            처음 시작하는 HTML, 가능성을 펼치고 가볍게 시작하세요.
+          </p>
 
-          <div class="floating-item tag-attribute">{ }</div>
-
-          <div class="floating-item preview-card">
-            <span class="preview-label">PREVIEW</span>
-            <strong class="preview-title">안녕하세요!</strong>
-            <span class="preview-line"></span>
-          </div>
-
-          <div class="floating-item click-sticker">
-            <span>태그를 골라</span>
-            <strong>딸깍!</strong>
-          </div>
-
-          <div class="floating-item drag-sticker">DRAGDROP</div>
+          <a class="hero-start-button" href="./src/pages/workspace.html">
+            프로젝트 시작하기 ↗
+          </a>
         </div>
 
+        <!-- 화면 장식 요소 -->
+        <div class="floating-item tag-button">button</div>
+
+        <div class="floating-item tag-attribute">{ }</div>
+
+        <div class="floating-item preview-card">
+          <span class="preview-label">PREVIEW</span>
+          <strong class="preview-title">안녕하세요!</strong>
+          <span class="preview-line"></span>
+        </div>
+
+        <div class="floating-item click-sticker">
+          <span>태그를 골라</span>
+          <strong>딸깍!</strong>
+        </div>
+
+        <div class="floating-item drag-sticker">DRAG &amp; DROP</div>
+
+        <!-- 하단 안내 -->
         <div class="hero-bottom">
           <p class="hero-process">SELECT / EDIT / PLACE</p>
-          <a class="hero-scroll" href="#introduction">SCROLL TO EXPLORE ↓</a>
+          <a class="hero-scroll" href="#introduction"> SCROLL TO EXPLORE ↓ </a>
         </div>
       </section>
     </main>
+
     <script src="./src/js/index.js"></script>
   </body>
 </html>
