@@ -45,6 +45,7 @@ main {
   font-size: 0.85rem;
   letter-spacing: 0.3em;
   color: var(--text-muted);
+  animation: fade-down 0.6s ease-out both;
 }
 
 #hero-title {
@@ -58,12 +59,47 @@ main {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: var(--text);
-  animation: rainbow-flow 6s linear infinite;
-  transition: -webkit-text-fill-color 0.8s;
+  animation: title-in 1s ease-out 0.15s both, rainbow-flow 6s linear infinite;
+  transition: -webkit-text-fill-color 0.5s;
 }
 
 #hero-title:hover {
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes title-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.4em;
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: -0.04em;
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    translate: 0 -1rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 @keyframes rainbow-flow {
@@ -85,11 +121,13 @@ main {
 .hero-tagline {
   font-size: 1.5rem;
   font-weight: bold;
+  animation: fade-up 0.6s ease-out 0.6s both;
 }
 
 .hero-subtitle {
   font-size: 1rem;
   color: var(--text-muted);
+  animation: fade-up 0.6s ease-out 0.75s both;
 }
 
 .hero-start-button {
@@ -104,6 +142,7 @@ main {
   border: 1px solid var(--accent-red);
   border-radius: var(--radius);
   transition: background 0.15s;
+  animation: fade-up 0.6s ease-out 0.9s both;
 }
 
 .hero-start-button:hover {
@@ -125,8 +164,24 @@ main {
   padding: 0.5rem 0.9rem;
   font-family: monospace;
   font-size: 1.1rem;
-  border-radius: var(--radius);
-  animation: float 4.5s ease-in-out infinite;
+  font-weight: 800;
+  color: var(--intro-ink);
+  border: 3px solid var(--intro-ink);
+  border-radius: 0.4rem;
+  animation: spread 1s ease-out both, float 4.5s ease-in-out infinite;
+}
+
+@keyframes spread {
+  from {
+    translate: var(--from-x) var(--from-y);
+    scale: 0.2;
+    opacity: 0;
+  }
+  to {
+    translate: 0 0;
+    scale: 1;
+    opacity: 1;
+  }
 }
 
 @keyframes float {
@@ -145,85 +200,124 @@ main {
   top: 20%;
   left: 18%;
   rotate: -6deg;
+  box-shadow:
+    1px 1px 0 var(--intro-h1-side),
+    2px 2px 0 var(--intro-h1-side),
+    3px 3px 0 var(--intro-h1-side),
+    4px 4px 0 var(--intro-h1-side),
+    5px 5px 0 var(--intro-h1-side),
+    6px 6px 0 var(--intro-h1-side),
+    7px 7px 0 var(--intro-h1-side),
+    8px 8px 0 var(--intro-h1-side);
   font-size: 1.6rem;
-  color: var(--intro-cyan);
-  background: var(--intro-cyan-soft);
-  border: 1px solid var(--intro-cyan-glow);
-  box-shadow: 0 0 0.75rem var(--intro-cyan-glow);
+  background: var(--intro-cyan);
+  --from-x: 30vw;
+  --from-y: 25vh;
+  animation-delay: 0s, 0s;
 }
 
 .tag-button {
   bottom: 24%;
   left: 25%;
   rotate: 4deg;
-  color: var(--intro-magenta);
-  background: var(--intro-magenta-soft);
-  border: 1px solid var(--intro-magenta-glow);
-  box-shadow: 0 0 0.75rem var(--intro-magenta-glow);
-  animation-delay: -1.5s;
+  box-shadow:
+    1px -1px 0 var(--intro-button-side),
+    2px -2px 0 var(--intro-button-side),
+    3px -3px 0 var(--intro-button-side),
+    4px -4px 0 var(--intro-button-side),
+    5px -5px 0 var(--intro-button-side);
+  background: var(--intro-magenta);
+  --from-x: 22vw;
+  --from-y: -22vh;
+  animation-delay: 0.1s, -1.5s;
 }
 
 .tag-attribute {
   top: 22%;
   right: 21%;
   rotate: 8deg;
+  box-shadow:
+    -1px 1px 0 var(--intro-attr-side),
+    -2px 2px 0 var(--intro-attr-side),
+    -3px 3px 0 var(--intro-attr-side),
+    -4px 4px 0 var(--intro-attr-side),
+    -5px 5px 0 var(--intro-attr-side),
+    -6px 6px 0 var(--intro-attr-side);
   font-size: 1.4rem;
-  color: var(--intro-lime);
-  background: var(--intro-lime-soft);
-  border: 1px solid var(--intro-lime-glow);
-  box-shadow: 0 0 0.75rem var(--intro-lime-glow);
-  animation-delay: -3s;
+  background: var(--intro-lime);
+  --from-x: -27vw;
+  --from-y: 23vh;
+  animation-delay: 0.2s, -3s;
 }
 
 .preview-card {
   bottom: 22%;
   right: 15%;
   rotate: -3deg;
+  box-shadow:
+    -1px -1px 0 var(--intro-preview-side),
+    -2px -2px 0 var(--intro-preview-side),
+    -3px -3px 0 var(--intro-preview-side),
+    -4px -4px 0 var(--intro-preview-side),
+    -5px -5px 0 var(--intro-preview-side),
+    -6px -6px 0 var(--intro-preview-side),
+    -7px -7px 0 var(--intro-preview-side),
+    -8px -8px 0 var(--intro-preview-side),
+    -9px -9px 0 var(--intro-preview-side),
+    -10px -10px 0 var(--intro-preview-side);
   width: 12rem;
   padding: 0.9rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   font-family: inherit;
-  background: var(--intro-card);
-  border: 1px solid var(--intro-cyan-glow);
-  box-shadow: 0 0 0.75rem var(--intro-cyan-glow);
-  animation-delay: -2s;
+  background: var(--intro-paper);
+  --from-x: -30vw;
+  --from-y: -22vh;
+  animation-delay: 0.3s, -2s;
 }
 
 .preview-label {
+  align-self: flex-start;
+  padding: 0.1rem 0.4rem;
   font-family: monospace;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
-  color: var(--intro-cyan);
+  background: var(--intro-magenta);
+  border: 2px solid var(--intro-ink);
 }
 
 .preview-title {
   font-size: 1.25rem;
-  color: var(--text);
 }
 
 .preview-line {
   display: block;
-  height: 2px;
+  height: 0.4rem;
   width: 60%;
-  background: var(--intro-lime-glow);
+  background: var(--intro-ink);
 }
 
 .click-sticker {
   top: 46%;
   left: 12%;
   rotate: -10deg;
+  box-shadow:
+    1px 0 0 var(--intro-click-side),
+    2px 0 0 var(--intro-click-side),
+    3px 0 0 var(--intro-click-side),
+    4px 0 0 var(--intro-click-side);
   padding: 0.6rem 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: inherit;
   font-size: 0.8rem;
-  color: var(--intro-ink);
   background: var(--intro-violet);
   border-radius: 999px;
-  animation-delay: -4s;
+  --from-x: 36vw;
+  --from-y: 0vh;
+  animation-delay: 0.4s, -4s;
 }
 
 .click-sticker strong {
@@ -235,13 +329,21 @@ main {
   top: 44%;
   right: 11%;
   rotate: 6deg;
+  box-shadow:
+    -1px 0 0 var(--intro-drag-side),
+    -2px 0 0 var(--intro-drag-side),
+    -3px 0 0 var(--intro-drag-side),
+    -4px 0 0 var(--intro-drag-side),
+    -5px 0 0 var(--intro-drag-side),
+    -6px 0 0 var(--intro-drag-side),
+    -7px 0 0 var(--intro-drag-side);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: var(--intro-yellow);
-  background: var(--intro-yellow-soft);
-  border: 1px dashed var(--intro-yellow);
-  box-shadow: 0 0 0.75rem var(--intro-yellow-glow);
-  animation-delay: -0.8s;
+  background: var(--intro-yellow);
+  border-style: dashed;
+  --from-x: -36vw;
+  --from-y: 0vh;
+  animation-delay: 0.5s, -0.8s;
 }
 
 .hero-bottom {
@@ -258,7 +360,13 @@ main {
   font-family: monospace;
   font-size: 0.8rem;
   letter-spacing: 0.2em;
+  animation: fade-up 0.6s ease-out 1.2s both;
 }
+
+.hero-bottom a {
+  margin-left: auto;
+}
+
 
 .hero-process {
   color: var(--text-faint);
