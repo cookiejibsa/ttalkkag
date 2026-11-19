@@ -6,7 +6,7 @@
  * @returns {string | null}
  */
 function load(itemId) {
-    if(!ItemType.Projects.includes(itemId)) return null;
+    if(!ItemType.Projects.includes(itemId) || !ItemType.Profile.includes(itemId)) return null;
     return localStorage.getItem(itemId);
 } 
 
@@ -15,7 +15,7 @@ function load(itemId) {
  * @param {string[]} item
  */
 function save(itemId, item) {
-    if(!ItemType.Projects.includes(itemId)) return null;
+    if(!ItemType.Projects.includes(itemId) || !ItemType.Profile.includes(itemId)) return null;
     localStorage.setItem(itemId, item.join('$$'));
 }
 
@@ -25,7 +25,7 @@ function save(itemId, item) {
  * @returns {boolean}
  */
 function isExists(itemId, item) {
-    if(!ItemType.Projects.includes(itemId)) return false;
+    if(!ItemType.Projects.includes(itemId) || !ItemType.Profile.includes(itemId)) return false;
     const storageItem = localStorage.getItem(itemId)?.split('$$');
     if(!storageItem) return false;
     storageItem.forEach((i) => {

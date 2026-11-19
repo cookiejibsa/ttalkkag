@@ -1,4 +1,5 @@
 // profile.js — 사용자 간략 정보 계산 + 표시 (함께한 날, 프로젝트 수, 마지막 작업)
+import {Load, Save, Exists, ItemType} from "./util/storage.js";
 
 
 // 프로필 사진 업로드 기능
