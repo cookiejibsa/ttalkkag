@@ -32,6 +32,7 @@ if (imageInput && avatar && nameInput) {
         if (profile.avatar) avatar.src = profile.avatar;
     }
 
+    // 현재 프로필 이름과 이미지를 로컬 스토리지에 저장합니다.
     const saveProfile = () => {
         const name = nameInput.value.trim();
         nameInput.value = name;
@@ -39,7 +40,9 @@ if (imageInput && avatar && nameInput) {
         Save(ItemType.Profile, [JSON.stringify(profile)]);
     };
 
+    // 이름 입력이 확정되면 프로필을 저장합니다.
     nameInput.addEventListener("change", saveProfile);
+    // Enter 키로 이름 입력을 확정하고 저장되도록 포커스를 해제합니다.
     nameInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -47,11 +50,13 @@ if (imageInput && avatar && nameInput) {
         }
     });
 
+    // 선택한 이미지 파일을 읽어 미리보기와 로컬 스토리지를 갱신합니다.
     imageInput.addEventListener("change", (event) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
         const reader = new FileReader();
+        // 파일 읽기가 끝나면 데이터 URL을 프로필 이미지로 적용합니다.
         reader.addEventListener("load", () => {
             if (typeof reader.result !== "string") return;
             avatar.src = reader.result;
