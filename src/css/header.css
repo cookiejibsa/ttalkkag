@@ -18,6 +18,8 @@ header {
 #brand-logo {
   height: 3rem;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 #brand-name {
@@ -70,11 +72,12 @@ header {
   gap: 0.4rem;
 }
 
-.toolbar-btn>img {
+.toolbar-btn > img {
   width: 1rem;
 }
 
-[data-action="save"], [data-action="reset"] {
+[data-action="save"],
+[data-action="reset"] {
   margin-left: 1.1rem;
 }
 
