@@ -1,9 +1,12 @@
 // gallery.js — localStorage의 프로젝트를 대시보드 카드로 생성합니다.
 import { Load, ItemType } from "./storage.js";
 
-const gallery = document.querySelector(".gallery");
+import { ItemType, Load } from "./storage.js";
 
-/** @typedef {{ name: string, updatedAt: string, html: string }} Project */
+/**
+ * @type {string[]}
+ */
+let projects;
 
 // 저장된 프로젝트 값을 배열로 읽고 프로젝트 형식이 아닌 항목은 제외합니다.
 function loadProjects() {
@@ -26,6 +29,9 @@ function loadProjects() {
             return [];
         }
     });
+
+    // [5] Return Cards
+    return cards;
 }
 
 // 값이 이름, 최종 수정 시각, HTML 소스를 갖춘 프로젝트인지 확인합니다.

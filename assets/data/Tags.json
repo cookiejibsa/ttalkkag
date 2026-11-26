@@ -1,12 +1,146 @@
 [
-    {
-        "tagId": "html",
-        "needCloseTag": true,
-        "attributes": [
-            {
-                "name": "lang",
-                "value": "ko"
-            }
-        ]
-    }
+  {
+    "tagId": "div",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "section",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "h1",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "h2",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "p",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "span",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "ul",
+    "category": "목록",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "ol",
+    "category": "목록",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "li",
+    "category": "목록",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "a",
+    "category": "링크·미디어",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "href", "value": "https://" },
+      { "name": "target", "value": "_blank" },
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "img",
+    "category": "링크·미디어",
+    "needCloseTag": false,
+    "attributes": [
+      { "name": "src", "value": "" },
+      { "name": "alt", "value": "" },
+      { "name": "width", "value": "" },
+      { "name": "height", "value": "" }
+    ]
+  },
+  {
+    "tagId": "button",
+    "category": "폼",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "type", "value": "button" },
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "input",
+    "category": "폼",
+    "needCloseTag": false,
+    "attributes": [
+      { "name": "type", "value": "text" },
+      { "name": "name", "value": "" },
+      { "name": "placeholder", "value": "" },
+      { "name": "id", "value": "" }
+    ]
+  },
+  {
+    "tagId": "label",
+    "category": "폼",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "for", "value": "" },
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "form",
+    "category": "폼",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "action", "value": "" },
+      { "name": "method", "value": "get" },
+      { "name": "id", "value": "" }
+    ]
+  }
 ]
