@@ -1,6 +1,6 @@
 // header.js — 상단 바: 프로젝트명 입력 및 액션 버튼(새 탭/내보내기/저장/불러오기/초기화) 이벤트 처리
 
-const newTabBtn = document.querySelector('[data-action="new-tab"]');
+const newTabBtns = document.querySelectorAll('[data-action="new-tab"]');
 const exportBtn = document.querySelector('[data-action="export"]');
 const copyBtn = document.querySelector('[data-action="copy-code"]');
 
@@ -219,14 +219,16 @@ function createHtmlBlob() {
   };
 }
 
-// 8. 새 탭
-newTabBtn.addEventListener("click", () => {
-  const { blob } = createHtmlBlob();
+// 8. 새 탭 (상단 바와 렌더링부의 새 탭 버튼 모두 같은 동작)
+newTabBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    const { blob } = createHtmlBlob();
 
-  const url = URL.createObjectURL(blob);
-  window.open(url, "_blank");
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
 
-  setTimeout(() => URL.revokeObjectURL(url), 10000);
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  });
 });
 
 // 9. 내보내기
