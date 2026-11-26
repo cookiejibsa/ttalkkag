@@ -49,27 +49,34 @@
           />내보내기
         </button>
 
-        <button class="toolbar-btn" data-action="save">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/save.svg"
-            alt="저장"
-          />저장
-        </button>
-        <button class="toolbar-btn" data-action="load">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/load.svg"
-            alt="불러오기"
-          />불러오기
-        </button>
-        <button class="toolbar-btn" data-action="reset">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/reset.svg"
-            alt="초기화"
-          />초기화
-        </button>
+        <details class="toolbar-menu">
+          <!-- 저장 / 불러오기 / 초기화는 메뉴 안에 -->
+          <summary class="toolbar-btn toolbar-menu-button" aria-label="메뉴 더 보기">
+            <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </summary>
+          <div class="toolbar-menu-list">
+            <button class="toolbar-menu-item" type="button" data-action="save">
+              <img src="../../assets/icons/save.svg" alt="" />저장
+            </button>
+            <button class="toolbar-menu-item" type="button" data-action="load">
+              <img src="../../assets/icons/load.svg" alt="" />불러오기
+            </button>
+            <button class="toolbar-menu-item" type="button" data-action="reset">
+              <img src="../../assets/icons/reset.svg" alt="" />초기화
+            </button>
+          </div>
+        </details>
+
+        <a
+          class="toolbar-btn"
+          data-action="dashboard"
+          href="./dashboard.html"
+          title="대시보드로 이동합니다."
+        >
+          <img class="btn-icon" src="../../assets/icons/dashboard.svg" alt="" />대시보드
+        </a>
       </div>
     </header>
     <hr id="header-divider" />
@@ -96,7 +103,6 @@
       <section class="output">
         <!-- 결과 확인 영역 -->
         <div class="render-pane">
-          <button class="pane-btn" type="button" data-action="new-tab">새 탭</button>
           <iframe id="html-preview" src="about:blank"></iframe>
         </div>
         <div class="splitter"></div>
@@ -110,7 +116,7 @@
             <!-- 실제 스크롤 영역 -->
             <div class="code-editor">
               <div id="line-numbers"></div>
-              <pre><code id="code-output"></code></pre>
+              <pre data-selectable="true"><code id="code-output"></code></pre>
             </div>
 
             <!-- 코드 창 중앙에 표시되는 메시지 -->

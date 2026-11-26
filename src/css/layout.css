@@ -42,21 +42,58 @@ main {
 }
 
 .attr-panel {
-  height: 100%;
-  overflow: scroll;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
   background: var(--bg-panel-alt);
 }
 
+/* 미리보기 + 제작 버튼: 어떤 태그를 골라도 높이 고정 */
 .preview-make {
+  flex-shrink: 0;
   display: flex;
-  height: 5rem;
+  height: 3.2rem;
   border-top: 1px solid var(--border);
 }
 
 .tag-preview {
   width: 80%;
-  overflow: scroll;
+  height: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   background: var(--bg-panel);
+}
+
+.tag-preview > * {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* 제작 후 배치 중: 렌더링부를 눌러 원하는 자리에 넣는다 */
+.render-pane.is-placing {
+  cursor: copy;
+  outline: 2px dashed var(--pointer);
+  outline-offset: -4px;
+}
+
+.render-pane.is-placing iframe {
+  pointer-events: none;
+}
+
+/* 배치 중 태그가 들어갈 자리 표시선 */
+.insert-line {
+  position: absolute;
+  z-index: 5;
+  height: 0;
+  display: none;
+  border-top: 2px dashed var(--pointer);
+  pointer-events: none;
+}
+
+.render-pane.is-placing .insert-line.is-visible {
+  display: block;
 }
 
 .make-action {
@@ -140,10 +177,6 @@ iframe {
   background: var(--bg-chrome);
 }
 
-.render-pane > .pane-btn {
-  right: 1rem;
-}
-
 .pane-btn[data-action="copy-code"] {
   border-color: var(--accent-blue);
   color: var(--accent-blue);
@@ -193,8 +226,9 @@ main *::-webkit-scrollbar,
   font-size: 14px;
 }
 
-/* 코드 영역 */
+/* 코드 영역: 드래그해서 선택·복사 가능 */
 .code-pane pre {
+  cursor: text;
   margin: 0;
   padding: 16px;
   white-space: pre;

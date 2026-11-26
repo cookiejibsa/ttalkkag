@@ -244,3 +244,131 @@ exportBtn.addEventListener("click", () => {
 
   URL.revokeObjectURL(url);
 });
+
+// 10. 저장 / 불러오기 / 초기화 메뉴: 항목을 고르거나 바깥을 누르거나 Esc를 누르면 닫기
+const toolbarMenu = document.querySelector(".toolbar-menu");
+
+if (toolbarMenu) {
+  document.addEventListener("click", (event) => {
+    if (toolbarMenu.open && !toolbarMenu.contains(event.target)) toolbarMenu.open = false;
+  });
+
+  toolbarMenu.querySelectorAll(".toolbar-menu-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      toolbarMenu.open = false;
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") toolbarMenu.open = false;
+  });
+}
+
+// 11. 다른 스크립트(main.js)가 문서를 바꿀 때 쓰는 통로
+window.ttalkkagDocument = {
+  getHtml: () => html,
+  setHtml(nextHtml) {
+    html = nextHtml;
+    updateOutput();
+  },
+};
+
+// 12. 저장 / 불러오기 / 초기화
+// localStorage "project" 키에 [{ name, updatedAt, html }] 배열로 저장 (대시보드가 이 배열을 읽음)
+const PROJECT_KEY = "project";
+const EMPTY_HTML = `<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+  </body>
+</html>`;
+
+function readProjects() {
+  try {
+    const list = JSON.parse(localStorage.getItem(PROJECT_KEY) || "[]");
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveProject(showMessage = true) {
+  const name = nameInput?.value.trim() || "제목 없는 프로젝트";
+  const others = readProjects().filter((project) => project.name !== name);
+  const saved = { name, updatedAt: new Date().toISOString(), html: formatHTML(html) };
+
+  localStorage.setItem(PROJECT_KEY, JSON.stringify([saved, ...others]));
+  if (showMessage) showCopyMessage(`✓ "${name}" 저장했습니다`);
+}
+
+function loadProject(project) {
+  if (nameInput) nameInput.value = project.name;
+  html = project.html;
+  updateOutput();
+  showCopyMessage(`✓ "${project.name}" 불러왔습니다`);
+}
+
+// 불러오기 창: 저장된 프로젝트를 최근 순으로 보여주고 고르면 불러옴
+function openLoadDialog() {
+  const projects = readProjects();
+  const dialog = document.createElement("dialog");
+  dialog.className = "project-dialog";
+
+  const title = document.createElement("h2");
+  title.textContent = "불러오기";
+  dialog.append(title);
+
+  if (projects.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "project-dialog-empty";
+    empty.textContent = "저장된 프로젝트가 없습니다.";
+    dialog.append(empty);
+  }
+
+  projects.forEach((project) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "project-dialog-item";
+    const date = new Date(project.updatedAt);
+    item.innerHTML = `<strong></strong><span>${isNaN(date) ? "" : date.toLocaleString("ko-KR")}</span>`;
+    item.querySelector("strong").textContent = project.name;
+    item.addEventListener("click", () => {
+      loadProject(project);
+      dialog.close();
+    });
+    dialog.append(item);
+  });
+
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.className = "project-dialog-close";
+  closeButton.textContent = "닫기";
+  closeButton.addEventListener("click", () => dialog.close());
+  dialog.append(closeButton);
+
+  dialog.addEventListener("close", () => dialog.remove());
+  document.body.append(dialog);
+  dialog.showModal();
+}
+
+document.querySelector('[data-action="save"]')?.addEventListener("click", () => saveProject());
+document.querySelector('[data-action="load"]')?.addEventListener("click", openLoadDialog);
+document.querySelector('[data-action="reset"]')?.addEventListener("click", () => {
+  if (!confirm("지금 만든 내용을 모두 지우고 빈 문서로 시작할까요?")) return;
+  html = EMPTY_HTML;
+  updateOutput();
+});
+
+// 대시보드로 갈 때 자동 저장
+document.querySelector('[data-action="dashboard"]')?.addEventListener("click", () => saveProject(false));
+
+// 대시보드에서 ?project=이름 으로 들어오면 그 프로젝트를 불러옴
+const requestedProject = new URLSearchParams(location.search).get("project");
+if (requestedProject) {
+  const project = readProjects().find((item) => item.name === requestedProject);
+  if (project) loadProject(project);
+}

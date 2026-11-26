@@ -76,13 +76,79 @@ header {
   width: 1rem;
 }
 
-[data-action="save"],
-[data-action="reset"] {
-  margin-left: 1.1rem;
+/* 저장 / 불러오기 / 초기화 메뉴 (햄버거 버튼 + 드롭다운) */
+.toolbar-menu {
+  position: relative;
+  margin-left: 0.1rem;
 }
 
-[data-action="reset"]:hover {
-  background: var(--accent-red-hover);
+.toolbar-menu-button {
+  width: 2.5rem;
+  padding: 0;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.toolbar-menu-button::-webkit-details-marker {
+  display: none;
+}
+
+.toolbar-menu-button:hover,
+.toolbar-menu[open] .toolbar-menu-button {
+  background: var(--bg-hover);
+}
+
+.toolbar-menu-button svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.toolbar-menu-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 20;
+  min-width: 9rem;
+  margin-top: 0.4rem;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  background: var(--bg-chrome);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.toolbar-menu-item {
+  height: 2.3rem;
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+}
+
+.toolbar-menu-item > img {
+  width: 1rem;
+}
+
+.toolbar-menu-item[data-action="reset"]:hover {
+  color: var(--accent-red-hover);
+  background: var(--accent-red-dim);
+}
+
+/* 대시보드 이동은 맨 오른쪽, 다른 버튼과 살짝 떨어뜨림 */
+.toolbar-actions a[data-action="dashboard"] {
+  margin-left: 1.1rem;
 }
 
 #header-divider {
@@ -106,4 +172,46 @@ a[data-action="new-project"] {
 
 a[data-action="new-project"]:hover {
   background: var(--accent-blue-dim);
+}
+
+/* 불러오기 창 */
+.project-dialog {
+  margin: auto;
+  width: 26rem;
+  max-height: 70vh;
+  padding: 1rem;
+  color: var(--text);
+  background: var(--bg-chrome);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.project-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.project-dialog h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.project-dialog-item {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+}
+
+.project-dialog-item span,
+.project-dialog-empty {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.project-dialog-close {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1rem;
 }
