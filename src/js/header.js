@@ -10,20 +10,28 @@ const codeOutput = document.querySelector("#code-output");
 const lineNumbers = document.querySelector("#line-numbers");
 const copyMessage = document.querySelector("#copy-message");
 
-// 1. 더미 HTML 저장
-let html = `<!doctype html>
+// 1. 기본 HTML 템플릿 (title에는 프로젝트 이름이 들어감)
+const DEFAULT_TITLE = "제목 없는 프로젝트";
+
+function createTemplate(title) {
+  return `<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>${escapeHTML(title || DEFAULT_TITLE)}</title>
   </head>
   <body>
-    <!-- 첫 번째 HTML -->
-    <h1 class="title">Hello, World!</h1>
-    <p>딸깍으로 만든 첫 번째 HTML입니다.</p>
   </body>
 </html>`;
+}
+
+// 지금 문서의 <title>을 프로젝트 이름으로 바꾼 HTML
+function withTitle(source, title) {
+  return source.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHTML(title || DEFAULT_TITLE)}</title>`);
+}
+
+let html = createTemplate(nameInput?.value.trim());
 
 // 2. HTML 들여쓰기 구현
 function formatHTML(source) {
@@ -276,17 +284,6 @@ window.ttalkkagDocument = {
 // 12. 저장 / 불러오기 / 초기화
 // localStorage "project" 키에 [{ name, updatedAt, html }] 배열로 저장 (대시보드가 이 배열을 읽음)
 const PROJECT_KEY = "project";
-const EMPTY_HTML = `<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-  </body>
-</html>`;
-
 function readProjects() {
   try {
     const list = JSON.parse(localStorage.getItem(PROJECT_KEY) || "[]");
@@ -359,7 +356,13 @@ document.querySelector('[data-action="save"]')?.addEventListener("click", () => 
 document.querySelector('[data-action="load"]')?.addEventListener("click", openLoadDialog);
 document.querySelector('[data-action="reset"]')?.addEventListener("click", () => {
   if (!confirm("지금 만든 내용을 모두 지우고 빈 문서로 시작할까요?")) return;
-  html = EMPTY_HTML;
+  html = createTemplate(nameInput?.value.trim());
+  updateOutput();
+});
+
+// 프로젝트 이름을 바꾸면 문서 <title>도 같이 바뀜
+nameInput?.addEventListener("input", () => {
+  html = withTitle(html, nameInput.value.trim());
   updateOutput();
 });
 
