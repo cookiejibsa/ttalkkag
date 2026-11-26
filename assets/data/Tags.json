@@ -18,7 +18,61 @@
     ]
   },
   {
+    "tagId": "header",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "main",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "nav",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "article",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "footer",
+    "category": "구조",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
     "tagId": "h1",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "h3",
     "category": "텍스트",
     "needCloseTag": true,
     "attributes": [
@@ -52,6 +106,36 @@
       { "name": "id", "value": "" },
       { "name": "class", "value": "" }
     ]
+  },
+  {
+    "tagId": "strong",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "em",
+    "category": "텍스트",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "br",
+    "category": "텍스트",
+    "needCloseTag": false,
+    "attributes": []
+  },
+  {
+    "tagId": "hr",
+    "category": "구조",
+    "needCloseTag": false,
+    "attributes": []
   },
   {
     "tagId": "ul",
@@ -120,6 +204,9 @@
       { "name": "type", "value": "text" },
       { "name": "name", "value": "" },
       { "name": "placeholder", "value": "" },
+      { "name": "value", "value": "" },
+      { "name": "required", "value": "" },
+      { "name": "checked", "value": "" },
       { "name": "id", "value": "" }
     ]
   },
@@ -142,5 +229,65 @@
       { "name": "method", "value": "get" },
       { "name": "id", "value": "" }
     ]
+  },
+  {
+    "tagId": "textarea",
+    "category": "폼",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "name", "value": "" },
+      { "name": "rows", "value": "" },
+      { "name": "cols", "value": "" },
+      { "name": "placeholder", "value": "" },
+      { "name": "id", "value": "" }
+    ]
+  },
+  {
+    "tagId": "select",
+    "category": "폼",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "name", "value": "" },
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "option",
+    "category": "폼",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "value", "value": "" },
+      { "name": "id", "value": "" }
+    ]
+  },
+  {
+    "tagId": "table",
+    "category": "표",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "id", "value": "" },
+      { "name": "class", "value": "" }
+    ]
+  },
+  {
+    "tagId": "tr",
+    "category": "표",
+    "needCloseTag": true,
+    "attributes": []
+  },
+  {
+    "tagId": "th",
+    "category": "표",
+    "needCloseTag": true,
+    "attributes": [
+      { "name": "scope", "value": "col" }
+    ]
+  },
+  {
+    "tagId": "td",
+    "category": "표",
+    "needCloseTag": true,
+    "attributes": []
   }
 ]

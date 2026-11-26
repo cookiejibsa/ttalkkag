@@ -140,3 +140,5 @@ if (imageInput && avatar && nameInput && removeAvatarButton) {
         reader.readAsDataURL(file);
     });
 }
+
+
