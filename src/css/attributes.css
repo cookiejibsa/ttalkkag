@@ -1,1 +1,77 @@
-/* attributes.css — 태그 속성 편집 부 */
+/* attributes.css — 속성 조립 패널 */
+
+.attr-panel {
+  padding: 0.75rem 1rem;
+  color: var(--text);
+}
+
+.attr-panel-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.attribute-editor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.attribute-editor-row {
+  display: grid;
+  grid-template-columns: minmax(4rem, 0.8fr) minmax(5rem, 1.2fr) auto;
+  gap: 0.35rem;
+}
+
+.attribute-name-input,
+.attribute-value-input,
+.tag-content-input {
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-input);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.attribute-name-input:focus-visible,
+.attribute-value-input:focus-visible,
+.tag-content-input:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.attribute-remove-button,
+.attribute-add-button {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-chrome);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.attribute-remove-button:hover,
+.attribute-add-button:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.attribute-add-button {
+  margin-top: 0.55rem;
+}
+
+.tag-content-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.tag-content-input {
+  resize: vertical;
+}
