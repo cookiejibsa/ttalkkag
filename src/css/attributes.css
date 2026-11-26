@@ -5,17 +5,6 @@
   color: var(--text);
 }
 
-.attr-panel[data-drop-target="tag-select"] {
-  outline: 1px dashed transparent;
-  outline-offset: -4px;
-  transition: outline-color 0.15s, background-color 0.15s;
-}
-
-.attr-panel.is-drop-target-active {
-  outline-color: var(--accent-blue) !important;
-  background: var(--accent-blue-dim);
-}
-
 .attr-panel-title {
   margin: 0 0 0.75rem;
   font-size: 1rem;

@@ -1,210 +1,246 @@
-// header.js — 미리보기/내보내기 및 프로젝트 메뉴 기능
-import { Generate } from "./util/codeGenerator.js";
-import { renderCodeview } from "./ui/codeview.js";
-import { LoadProjects, SaveProjects } from "./util/storage.js";
+// header.js — 상단 바: 프로젝트명 입력 및 액션 버튼(새 탭/내보내기/저장/불러오기/초기화) 이벤트 처리
 
-const menuWrap = document.querySelector(".menu-wrap");
-const menuToggle = document.querySelector('[data-action="menu-toggle"]');
-const projectMenu = document.querySelector("#project-menu");
+const newTabBtns = document.querySelectorAll('[data-action="new-tab"]');
+const exportBtn = document.querySelector('[data-action="export"]');
+const copyBtn = document.querySelector('[data-action="copy-code"]');
+
 const nameInput = document.querySelector("#project-name");
 const preview = document.querySelector("#html-preview");
 const codeOutput = document.querySelector("#code-output");
 const lineNumbers = document.querySelector("#line-numbers");
 const copyMessage = document.querySelector("#copy-message");
-const loadDialog = document.querySelector("#load-project-dialog");
-const savedProjectsSelect = document.querySelector("#saved-projects");
-const loadEmptyMessage = document.querySelector("#load-empty-message");
-const loadConfirm = document.querySelector('[data-action="load-confirm"]');
 
-let currentDraft = null;
-let currentHtml = Generate(null);
-let projectsForDialog = [];
-let loadedLegacyHtml = false;
+// 1. 더미 HTML 저장
+let html = `<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 첫 번째 HTML -->
+    <h1 class="title">Hello, World!</h1>
+    <p>딸깍으로 만든 첫 번째 HTML입니다.</p>
+  </body>
+</html>`;
 
-function renderOutput() {
-  if (currentDraft) currentHtml = Generate(currentDraft, nameInput?.value ?? "Document");
-  if (preview) preview.srcdoc = currentHtml;
-  renderCodeview(codeOutput, lineNumbers, currentHtml);
+// 2. HTML 들여쓰기 구현
+function formatHTML(source) {
+  const tokens =
+    source.match(
+      /<!--[\s\S]*?-->|<!DOCTYPE[^>]*>|<\/?[\w-]+(?:\s[^<>]*?)?\/?>|[^<]+/gi,
+    ) || [];
+
+  const voidTags = [
+    "area",
+    "base",
+    "br",
+    "col",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr",
+  ];
+
+  let result = "";
+  let depth = 0;
+
+  tokens.forEach((token) => {
+    const value = token.trim();
+
+    if (!value) return;
+
+    // 닫는 태그인지 확인
+    const isClosing = /^<\//.test(value);
+
+    // 독립적인 태그인지 확인
+    const isDoctype = /^<!doctype/i.test(value);
+    const isComment = /^<!--/.test(value);
+
+    const tagMatch = value.match(/^<\/?([\w-]+)/);
+    const tagName = tagMatch ? tagMatch[1].toLowerCase() : "";
+
+    const isVoid = voidTags.includes(tagName);
+    const isSelfClosing = /\/>$/.test(value);
+
+    if (isClosing) {
+      depth = Math.max(0, depth - 1);
+    }
+
+    result += "  ".repeat(depth) + value + "\n";
+
+    if (
+      tagMatch &&
+      !isClosing &&
+      !isVoid &&
+      !isSelfClosing &&
+      !isDoctype &&
+      !isComment
+    ) {
+      depth++;
+    }
+  });
+
+  return result.trim();
 }
 
-function showMessage(message) {
-  if (!copyMessage) return;
+// 3. HTML 특수문자 변환
+function escapeHTML(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+// 4. HTML 문법 강조
+function highlightHTML(source) {
+  const tokens =
+    source.match(
+      /<!--[\s\S]*?-->|<!DOCTYPE[^>]*>|<\/?[\w-]+(?:\s[^<>]*?)?\/?>|[^<]+/gi,
+    ) || [];
+
+  return tokens
+    .map((token) => {
+      // 주석
+      if (token.startsWith("<!--")) {
+        return `<span data-token="comment">${escapeHTML(token)}</span>`;
+      }
+
+      // DOCTYPE
+      if (/^<!doctype/i.test(token)) {
+        return `<span data-token="tag">${escapeHTML(token)}</span>`;
+      }
+
+      // HTML 태그
+      if (/^<\/?[\w-]+/.test(token)) {
+        const match = token.match(/^(<\/?)([\w-]+)([\s\S]*?)(\/?>)$/);
+
+        if (!match) return escapeHTML(token);
+
+        const [, bracket, tagName, attributes, ending] = match;
+
+        // 속성에 색상 적용
+        const coloredAttributes = attributes.replace(
+          /(\s+)([\w:-]+)(=)("[^"]*"|'[^']*'|[^\s>]+)/g,
+          (_, space, name, equal, value) => {
+            return (
+              `${space}<span data-token="attribute">${name}</span>` +
+              `${equal}<span data-token="string">${escapeHTML(value)}</span>`
+            );
+          },
+        );
+
+        return (
+          `${escapeHTML(bracket)}` +
+          `<span data-token="tag">${tagName}</span>` +
+          `${coloredAttributes}` +
+          `${escapeHTML(ending)}`
+        );
+      }
+
+      // 일반 텍스트
+      return escapeHTML(token);
+    })
+    .join("");
+}
+
+// 5. 미리보기 및 코드 출력
+function updateOutput() {
+  const formattedHTML = formatHTML(html);
+
+  // 왼쪽: 실제 HTML 렌더링
+  preview.srcdoc = formattedHTML;
+
+  // 오른쪽: 문법 강조된 HTML 표시
+  codeOutput.innerHTML = highlightHTML(formattedHTML);
+
+  // 줄 번호 생성
+  const lineCount = formattedHTML.split("\n").length;
+
+  lineNumbers.innerHTML = Array.from(
+    { length: lineCount },
+    (_, index) => index + 1,
+  ).join("<br>");
+}
+
+// 처음 실행
+updateOutput();
+
+// 복사 메시지 표시 함수
+function showCopyMessage(message) {
   copyMessage.textContent = message;
+
+  // 기존 애니메이션 초기화
   copyMessage.classList.remove("show");
   void copyMessage.offsetWidth;
+
+  // 애니메이션 다시 실행
   copyMessage.classList.add("show");
 }
 
-function closeMenu({ restoreFocus = false } = {}) {
-  if (!projectMenu || !menuToggle) return;
-  projectMenu.hidden = true;
-  menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "프로젝트 메뉴 열기");
-  if (restoreFocus) menuToggle.focus();
-}
-
-function openLoadDialog() {
-  if (!(loadDialog instanceof HTMLDialogElement)
-    || !(savedProjectsSelect instanceof HTMLSelectElement)) return;
-
+// 코드 복사
+copyBtn.addEventListener("click", async () => {
   try {
-    projectsForDialog = LoadProjects();
+    const formattedHTML = formatHTML(html);
+
+    await navigator.clipboard.writeText(formattedHTML);
+
+    showCopyMessage("✓ 코드가 복사되었습니다!");
   } catch (error) {
-    console.error("저장된 프로젝트를 읽지 못했습니다.", error);
-    projectsForDialog = [];
+    showCopyMessage("복사에 실패했습니다.");
+    console.error(error);
   }
+});
 
-  savedProjectsSelect.replaceChildren();
-  projectsForDialog.forEach((project, index) => {
-    const option = document.createElement("option");
-    option.value = String(index);
-    option.textContent = project.name || "이름 없는 프로젝트";
-    savedProjectsSelect.append(option);
-  });
-
-  const hasProjects = projectsForDialog.length > 0;
-  savedProjectsSelect.disabled = !hasProjects;
-  if (loadConfirm instanceof HTMLButtonElement) loadConfirm.disabled = !hasProjects;
-  if (loadEmptyMessage) loadEmptyMessage.hidden = hasProjects;
-  loadDialog.showModal();
-}
-
-function saveCurrentProject() {
-  const name = nameInput?.value.trim() || "이름 없는 프로젝트";
-  const now = new Date().toISOString();
-  const record = {
-    name,
-    updatedAt: now,
-    html: currentHtml,
-    ...(currentDraft ? { draft: structuredClone(currentDraft) } : {}),
-  };
-
-  try {
-    const projects = LoadProjects();
-    const existingIndex = projects.findIndex(
-      (project) => project.name.trim().toLocaleLowerCase() === name.toLocaleLowerCase(),
-    );
-    if (existingIndex >= 0) projects[existingIndex] = record;
-    else projects.push(record);
-    SaveProjects(projects);
-    showMessage("프로젝트를 저장했습니다.");
-  } catch (error) {
-    console.error("프로젝트를 저장하지 못했습니다.", error);
-    showMessage("저장 공간을 사용할 수 없습니다.");
-  }
-}
-
-function loadSelectedProject() {
-  const index = Number(savedProjectsSelect?.value);
-  const project = projectsForDialog[index];
-  if (!project) return;
-
-  if (nameInput) nameInput.value = project.name;
-  currentDraft = project.draft && typeof project.draft === "object" ? project.draft : null;
-  loadedLegacyHtml = !currentDraft;
-  currentHtml = project.html;
-
-  window.dispatchEvent(new CustomEvent("ddalkkak:project-load", {
-    detail: { draft: currentDraft },
-  }));
-  renderOutput();
-  loadDialog?.close();
-  showMessage("프로젝트를 불러왔습니다.");
-}
-
+// 7. 프로젝트명 및 HTML 파일 생성
 function createHtmlBlob() {
   const title = nameInput?.value.trim() || "Document";
-  const filename = title.replace(/[\\/:*?"<>|]/g, "_");
+
+  const formattedHTML = formatHTML(html);
+
+  const updatedHTML = formattedHTML.replace(
+    /<title>[\s\S]*?<\/title>/i,
+    `<title>${escapeHTML(title)}</title>`,
+  );
+
   return {
-    filename,
-    blob: new Blob([currentHtml], { type: "text/html;charset=utf-8" }),
+    title: title.replace(/[\\/:*?"<>|]/g, "_"),
+    blob: new Blob([updatedHTML], {
+      type: "text/html;charset=utf-8",
+    }),
   };
 }
 
-renderOutput();
+// 8. 새 탭 (상단 바와 렌더링부의 새 탭 버튼 모두 같은 동작)
+newTabBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    const { blob } = createHtmlBlob();
 
-window.addEventListener("ddalkkak:draft-change", (event) => {
-  currentDraft = event.detail?.draft ?? null;
-  loadedLegacyHtml = false;
-  renderOutput();
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
+
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  });
 });
 
-nameInput?.addEventListener("input", () => {
-  if (!loadedLegacyHtml) renderOutput();
-});
+// 9. 내보내기
+exportBtn.addEventListener("click", () => {
+  const { title, blob } = createHtmlBlob();
 
-menuToggle?.addEventListener("click", () => {
-  if (!projectMenu) return;
-  const shouldOpen = projectMenu.hidden;
-  projectMenu.hidden = !shouldOpen;
-  menuToggle.setAttribute("aria-expanded", String(shouldOpen));
-  menuToggle.setAttribute("aria-label", shouldOpen ? "프로젝트 메뉴 닫기" : "프로젝트 메뉴 열기");
-});
-
-projectMenu?.addEventListener("click", (event) => {
-  const actionButton = event.target instanceof Element
-    ? event.target.closest("button[data-action]")
-    : null;
-  const action = actionButton?.getAttribute("data-action");
-  if (!action) return;
-  closeMenu();
-
-  if (action === "save") {
-    saveCurrentProject();
-  } else if (action === "load") {
-    openLoadDialog();
-  } else if (action === "reset") {
-    if (!window.confirm("현재 작업을 초기화할까요? 저장한 프로젝트는 삭제되지 않습니다.")) return;
-    if (nameInput) nameInput.value = "";
-    currentDraft = null;
-    loadedLegacyHtml = false;
-    currentHtml = Generate(null);
-    renderOutput();
-    window.dispatchEvent(new CustomEvent("ddalkkak:project-reset"));
-    showMessage("현재 작업을 초기화했습니다.");
-  }
-});
-
-document.addEventListener("pointerdown", (event) => {
-  if (menuWrap && event.target instanceof Node && !menuWrap.contains(event.target)) closeMenu();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && projectMenu && !projectMenu.hidden) {
-    closeMenu({ restoreFocus: true });
-  }
-});
-
-document.querySelector('[data-action="preview"]')?.addEventListener("click", () => {
-  const { blob } = createHtmlBlob();
   const url = URL.createObjectURL(blob);
-  window.open(url, "_blank", "noopener");
-  setTimeout(() => URL.revokeObjectURL(url), 30000);
-});
 
-document.querySelector('[data-action="export"]')?.addEventListener("click", () => {
-  const { filename, blob } = createHtmlBlob();
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${filename}.html`;
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-});
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${title}.html`;
+  a.click();
 
-document.querySelector('[data-action="copy-code"]')?.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(currentHtml);
-    showMessage("코드를 복사했습니다.");
-  } catch (error) {
-    console.error("코드를 복사하지 못했습니다.", error);
-    showMessage("복사에 실패했습니다.");
-  }
-});
-
-document.querySelector('[data-action="load-cancel"]')?.addEventListener("click", () => loadDialog?.close());
-loadConfirm?.addEventListener("click", loadSelectedProject);
-
-loadDialog?.addEventListener("click", (event) => {
-  if (event.target === loadDialog) loadDialog.close();
+  URL.revokeObjectURL(url);
 });

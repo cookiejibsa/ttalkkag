@@ -10,9 +10,10 @@ export function createTagElement(draft) {
   draft.attributes.forEach(({ name, value }) => {
     const normalizedName = name.trim();
     if (!safeAttributeName.test(normalizedName) || /^on/i.test(normalizedName)) return;
+    if (value === "") return;
+
     const lowerName = normalizedName.toLowerCase();
-    if (value === "" && lowerName !== "alt") return;
-    const lowerValue = value.toLowerCase().replace(/[\u0000-\u0020]/g, "");
+    const lowerValue = value.trim().toLowerCase();
     if (["href", "src", "action", "formaction"].includes(lowerName)
       && (lowerValue.startsWith("javascript:") || lowerValue.startsWith("data:text/html"))) return;
 

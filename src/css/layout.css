@@ -1,100 +1,71 @@
 /* layout.css — 3분할 레이아웃 + 리사이즈 가능한 구분선 스타일 */
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 main {
   display: flex;
-  flex: 1 1 auto;
   flex-direction: column;
-  min-height: 0;
+  height: 100vh;
 }
 
 .controls {
-  display: grid;
-  flex: 0 0 clamp(16rem, 35vh, 24rem);
-  grid-template-columns: minmax(17rem, 24rem) minmax(0, 1fr);
-  min-height: 0;
+  display: flex;
+  height: 16rem;
   background: var(--bg-panel);
   border-bottom: 1px solid var(--border);
 }
 
 .tag-list {
-  display: grid;
-  grid-template-columns: minmax(7rem, 0.9fr) minmax(8rem, 1.1fr);
-  min-width: 0;
-  min-height: 0;
-  border-right: 1px solid var(--border);
-}
-
-.tag-category,
-.tag-chip {
-  min-width: 0;
-  min-height: 0;
-  overflow: auto;
-  background: var(--bg-panel);
+  display: flex;
+  width: 25rem;
+  height: 100%;
 }
 
 .tag-category {
+  width: 12.5rem;
+  height: 100%;
+  overflow: scroll;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+}
+
+.tag-chip {
+  width: 12.5rem;
+  height: 100%;
+  overflow: scroll;
+  background: var(--bg-panel);
   border-right: 1px solid var(--border);
 }
 
 .workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
-  min-width: 0;
-  min-height: 0;
-}
-
-.attr-panel,
-.preview-make {
-  min-width: 0;
-  min-height: 0;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .attr-panel {
+  height: 100%;
+  overflow: scroll;
   background: var(--bg-panel-alt);
-  border-right: 1px solid var(--border);
 }
 
 .preview-make {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--bg-panel);
-}
-
-.panel-heading {
-  flex: 0 0 auto;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  font-weight: 700;
+  height: 5rem;
+  border-top: 1px solid var(--border);
 }
 
 .tag-preview {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  min-height: 3rem;
-  padding: 0.75rem;
-  overflow: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-input);
+  width: 80%;
+  overflow: scroll;
+  background: var(--bg-panel);
 }
 
 .make-action {
-  flex: 0 0 2.5rem;
-  border: 1px solid var(--accent-red);
-  border-radius: var(--radius);
+  width: 20%;
+  height: 100%;
+  border: none;
   background: var(--accent-red);
-  color: #fff;
-  font-weight: 700;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .make-action:hover {
@@ -103,18 +74,15 @@ main {
 
 .output {
   display: flex;
-  flex: 1 1 auto;
   width: 100%;
-  min-height: 0;
+  height: 100%;
 }
 
 .render-pane,
 .code-pane {
   position: relative;
   width: 50%;
-  min-width: 0;
-  min-height: 0;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .render-pane {
@@ -127,105 +95,38 @@ iframe {
   border: none;
 }
 
-/* 생성된 문서는 브라우저 기본 스타일로 보여줍니다. */
+/* 미리보기는 브라우저 기본 렌더링 그대로: 흰 바탕, 검은 글씨, 기본 태그 디자인 */
 #html-preview {
   background: Canvas;
   color-scheme: light;
 }
 
 .code-pane {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
   background: var(--bg-panel);
-  overflow: hidden;
 }
 
 .splitter {
   z-index: 10;
   position: relative;
-  flex: 0 0 0.4rem;
+  width: 0.4rem;
+  flex-shrink: 0;
   cursor: col-resize;
   background: var(--border-strong);
-  touch-action: none;
+  align-items: center;
 }
 
 .splitter:hover,
 .splitter.is-dragging {
   background: var(--accent-blue);
 }
-
 .splitter::before {
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
   left: -0.4rem;
   right: -0.4rem;
-  content: "";
   cursor: col-resize;
-}
-
-@media (max-width: 1100px) {
-  .controls {
-    grid-template-columns: minmax(16rem, 19rem) minmax(0, 1fr);
-  }
-
-  .workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.9fr);
-  }
-}
-
-@media (max-width: 760px) {
-  .controls {
-    flex-basis: min(56vh, calc(100% - 10rem));
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(6rem, 0.65fr) minmax(0, 1.35fr);
-  }
-
-  .tag-list {
-    grid-template-columns: minmax(7rem, 0.8fr) minmax(0, 1.2fr);
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .tag-category,
-  .tag-chip {
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-
-  .workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.9fr);
-  }
-
-  .attr-panel {
-    border-right: 1px solid var(--border);
-  }
-}
-
-@media (max-width: 500px) {
-  .controls {
-    flex-basis: min(62vh, calc(100% - 10rem));
-    grid-template-rows: minmax(5rem, 0.5fr) minmax(0, 1.5fr);
-  }
-
-  .workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(8rem, 0.8fr);
-  }
-
-  .preview-make {
-    padding: 0.5rem;
-  }
-
-  .output {
-    min-height: 10rem;
-  }
-
-  .splitter {
-    flex-basis: 0.3rem;
-  }
 }
 
 .pane-btn {
@@ -237,6 +138,10 @@ iframe {
   padding: 0 0.75rem;
   font-weight: bold;
   background: var(--bg-chrome);
+}
+
+.render-pane > .pane-btn {
+  right: 1rem;
 }
 
 .pane-btn[data-action="copy-code"] {
@@ -271,7 +176,6 @@ main *::-webkit-scrollbar,
   display: flex;
   width: 100%;
   height: 100%;
-  min-height: 0;
   overflow: auto;
   background: #1e1e1e;
 }
@@ -287,7 +191,6 @@ main *::-webkit-scrollbar,
   line-height: 1.5;
   font-family: Consolas, monospace;
   font-size: 14px;
-  white-space: pre;
 }
 
 /* 코드 영역 */
@@ -326,8 +229,6 @@ main *::-webkit-scrollbar,
   position: relative;
   flex: 1;
   min-height: 0;
-  width: 100%;
-  background: #1e1e1e;
   overflow: hidden;
 }
 
@@ -390,4 +291,33 @@ main *::-webkit-scrollbar,
     opacity: 0;
     transform: translate(-50%, -90%);
   }
+}
+
+/* 코드 영역 전체 */
+.code-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 코드 창 전체 */
+.code-window {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: #1e1e1e;
+  overflow: hidden;
+}
+
+/* 실제 코드 스크롤 영역 */
+.code-editor {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  background: #1e1e1e;
 }

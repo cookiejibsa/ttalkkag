@@ -11,7 +11,6 @@
 
 .tag-category-button,
 .tag-chip-button {
-  flex: 0 0 auto;
   min-height: 2rem;
   padding: 0.35rem 0.6rem;
   border: 1px solid transparent;
@@ -20,29 +19,6 @@
   color: var(--text-muted);
   text-align: left;
   cursor: pointer;
-}
-
-@media (max-width: 760px) {
-  .tag-category,
-  .tag-chip {
-    flex-direction: row;
-    align-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-}
-
-.tag-chip-button[draggable="true"] {
-  cursor: grab;
-}
-
-.tag-chip-button[draggable="true"]:active,
-.tag-chip-button.is-dragging {
-  cursor: grabbing;
-}
-
-.tag-chip-button.is-dragging {
-  opacity: 0.45;
 }
 
 .tag-category-button:hover,
@@ -62,10 +38,4 @@
 .tag-chip-button:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 1px;
-}
-
-.tag-category-button,
-.tag-chip-button {
-  user-select: none;
-  -webkit-user-select: none;
 }

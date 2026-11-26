@@ -1,20 +1,18 @@
-/* header.css — 공통 헤더와 워크스페이스 프로젝트 메뉴 */
+/* header.css - 상단바 설정 */
 
-/* 소개 및 대시보드 페이지의 기존 헤더 */
 header {
+  margin: 0.5rem 0 0.25rem;
+  height: 4rem;
   display: flex;
   align-items: center;
-  height: 4rem;
-  margin: 0.5rem 0 0.25rem;
 }
 
 .brand {
+  margin-left: 2rem;
+  height: 4rem;
   display: flex;
-  flex: 0 0 auto;
   align-items: center;
   gap: 0.5rem;
-  height: 4rem;
-  margin-left: 2rem;
 }
 
 #brand-logo {
@@ -26,55 +24,72 @@ header {
 
 #brand-name {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: bold;
   user-select: none;
 }
 
 .top-divider {
+  margin: 0 1.5rem;
   width: 0.2rem;
   height: 2rem;
-  margin: 0 1.5rem;
   background: currentColor;
   opacity: 0.6;
 }
 
 #project-name {
-  width: 20rem;
   height: 2.5rem;
-  border: 0;
+  width: 20rem;
+  font-size: 1.5rem;
+  border: none;
   border-bottom: 2px solid transparent;
   border-radius: 0;
   outline: none;
-  font-size: 1.5rem;
   transition: border-color 0.15s;
 }
 
-#project-name:hover,
+#project-name:hover {
+  border-bottom-color: var(--text-muted);
+}
+
 #project-name:focus {
   border-bottom-color: var(--text-muted);
 }
 
 .toolbar-actions {
+  margin: 0 4rem 0 auto;
   display: flex;
   align-items: center;
   gap: 0.1rem;
-  margin: 0 4rem 0 auto;
 }
 
 .toolbar-btn {
+  margin-left: 0.1rem;
+  padding: 0 1rem;
+  height: 2.5rem;
+  font-weight: bold;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  height: 2.5rem;
-  margin-left: 0.1rem;
-  padding: 0 1rem;
-  font-weight: 700;
 }
 
 .toolbar-btn > img {
   width: 1rem;
 }
 
+[data-action="save"],
+[data-action="reset"] {
+  margin-left: 1.1rem;
+}
+
+[data-action="reset"]:hover {
+  background: var(--accent-red-hover);
+}
+
+#header-divider {
+  height: 0.25rem;
+  background-color: var(--border-strong);
+}
+/* 페이지 이동용 링크 버튼 (index / mypage). <a>는 reset의 button 스타일을 못 받으므로 따로 맞춤 */
 a.toolbar-btn {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -91,306 +106,4 @@ a[data-action="new-project"] {
 
 a[data-action="new-project"]:hover {
   background: var(--accent-blue-dim);
-}
-
-#header-divider {
-  height: 0.25rem;
-  background-color: var(--border-strong);
-}
-
-/* 워크스페이스 전용 헤더 */
-.workspace-page header {
-  position: relative;
-  z-index: 20;
-  justify-content: space-between;
-  gap: 1rem;
-  height: auto;
-  min-height: var(--toolbar-h);
-  margin: 0;
-  padding: 0.45rem 1.25rem;
-  background: var(--bg-chrome);
-}
-
-.workspace-page .header-identity {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  gap: 1rem;
-  min-width: 0;
-}
-
-.workspace-page .brand {
-  min-height: 3.5rem;
-  margin: 0;
-}
-
-.workspace-page #brand-logo {
-  width: 2.75rem;
-  height: 2.75rem;
-}
-
-.workspace-page #brand-name {
-  font-size: 1.75rem;
-}
-
-.workspace-page .top-divider {
-  flex: 0 0 1px;
-  margin: 0;
-  background: var(--border-strong);
-}
-
-.workspace-page #project-name {
-  flex: 1 1 18rem;
-  width: auto;
-  min-width: 8rem;
-  max-width: 34rem;
-  height: 2.5rem;
-  padding: 0 0.35rem;
-  background: transparent;
-  font-size: 1.1rem;
-  text-overflow: ellipsis;
-}
-
-.workspace-page .toolbar-actions {
-  flex: 0 0 auto;
-  justify-content: flex-end;
-  gap: 0.35rem;
-  min-width: 0;
-  margin: 0;
-}
-
-.workspace-page .toolbar-btn {
-  justify-content: center;
-  min-height: 2.5rem;
-  margin: 0;
-  padding: 0 0.75rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--text);
-  font-size: inherit;
-  white-space: nowrap;
-}
-
-.workspace-page .toolbar-btn:hover {
-  background: var(--bg-hover);
-}
-
-.workspace-page .toolbar-btn:focus-visible,
-.workspace-page .project-menu button:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-.workspace-page .btn-icon {
-  width: 1rem;
-  height: 1rem;
-  object-fit: contain;
-}
-
-.workspace-page .dashboard-link {
-  border-color: var(--border);
-}
-
-.workspace-page .menu-wrap {
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.workspace-page .menu-toggle {
-  width: 2.65rem;
-  padding: 0;
-  border-color: var(--border);
-}
-
-.workspace-page .hamburger-icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  width: 1.1rem;
-}
-
-.workspace-page .hamburger-icon i {
-  display: block;
-  width: 100%;
-  height: 2px;
-  border-radius: 2px;
-  background: currentColor;
-}
-
-.workspace-page .project-menu {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  z-index: 30;
-  display: flex;
-  flex-direction: column;
-  width: 13rem;
-  padding: 0.4rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  background: var(--bg-chrome);
-  box-shadow: 0 0.6rem 1.8rem rgba(0, 0, 0, 0.4);
-}
-
-.workspace-page .project-menu[hidden] {
-  display: none;
-}
-
-.workspace-page .project-menu button {
-  min-height: 2.5rem;
-  padding: 0.45rem 0.65rem;
-  border: 0;
-  border-radius: var(--radius);
-  background: transparent;
-  text-align: left;
-}
-
-.workspace-page .project-menu button:hover {
-  background: var(--bg-hover);
-}
-
-.workspace-page .project-menu .menu-item-danger {
-  color: var(--accent-red-hover);
-}
-
-.workspace-page .project-menu .menu-item-danger:hover {
-  background: var(--accent-red-dim);
-}
-
-.workspace-page .menu-separator {
-  height: 1px;
-  margin: 0.25rem 0;
-  background: var(--border);
-}
-
-.workspace-page #header-divider {
-  flex: 0 0 2px;
-  width: 100%;
-}
-
-.workspace-page #load-project-dialog {
-  width: min(28rem, calc(100vw - 2rem));
-  margin: auto;
-  border: 1px solid var(--border-strong);
-  border-radius: 0.5rem;
-  background: var(--bg-chrome);
-  color: var(--text);
-}
-
-.workspace-page #load-project-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.65);
-}
-
-.workspace-page .dialog-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  padding: 1.25rem;
-}
-
-.workspace-page .dialog-content h2 {
-  font-size: 1.1rem;
-}
-
-.workspace-page .dialog-content select {
-  width: 100%;
-  min-height: 2.5rem;
-  padding: 0.4rem;
-}
-
-.workspace-page .dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
-.workspace-page .dialog-actions button {
-  min-height: 2.35rem;
-  padding: 0 0.8rem;
-}
-
-.workspace-page .dialog-primary {
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
-}
-
-@media (max-width: 900px) {
-  .workspace-page header {
-    gap: 0.5rem;
-    padding-inline: 0.75rem;
-  }
-
-  .workspace-page .header-identity {
-    gap: 0.65rem;
-  }
-
-  .workspace-page .toolbar-btn {
-    gap: 0.3rem;
-    padding-inline: 0.5rem;
-    font-size: 0.82rem;
-  }
-}
-
-@media (max-width: 680px) {
-  .workspace-page header {
-    flex-wrap: wrap;
-    gap: 0.15rem 0.5rem;
-    padding: 0.35rem 0.65rem 0.5rem;
-  }
-
-  .workspace-page .header-identity {
-    flex-basis: 100%;
-    min-height: 3rem;
-  }
-
-  .workspace-page #brand-logo {
-    width: 2.2rem;
-    height: 2.2rem;
-  }
-
-  .workspace-page #brand-name {
-    font-size: 1.4rem;
-  }
-
-  .workspace-page #project-name {
-    min-width: 0;
-    max-width: none;
-    font-size: 0.95rem;
-  }
-
-  .workspace-page .top-divider {
-    display: none;
-  }
-
-  .workspace-page .toolbar-actions {
-    display: grid;
-    flex: 1 1 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.2rem;
-  }
-
-  .workspace-page .toolbar-btn {
-    width: 100%;
-    min-height: 2.25rem;
-    padding-inline: 0.35rem;
-    font-size: 0.72rem;
-    white-space: normal;
-    text-align: center;
-  }
-
-  .workspace-page .menu-wrap {
-    width: 100%;
-  }
-
-  .workspace-page .toolbar-btn .btn-icon {
-    width: 0.85rem;
-    height: 0.85rem;
-  }
-
-  .workspace-page .menu-toggle {
-    width: 100%;
-    padding: 0;
-  }
 }
