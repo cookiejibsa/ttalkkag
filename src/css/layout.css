@@ -95,6 +95,12 @@ iframe {
   border: none;
 }
 
+/* 미리보기는 브라우저 기본 렌더링 그대로: 흰 바탕, 검은 글씨, 기본 태그 디자인 */
+#html-preview {
+  background: Canvas;
+  color-scheme: light;
+}
+
 .code-pane {
   background: var(--bg-panel);
 }
