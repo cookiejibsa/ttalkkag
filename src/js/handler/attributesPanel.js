@@ -78,7 +78,7 @@ export function renderAttributes(panel, tag, onAttributeChange, onTextChange, on
   // 사용자 속성 추가 버튼: 속성 칸들 바로 옆에
   attributeList.append(addButton);
 
-  // 태그 내용: 속성 칸들과 같은 줄에 두 칸 너비로
+  // 태그 내용: 속성 칸들 아래, 제작부 바로 위에 한 줄 전체로
   const contentField = document.createElement("label");
   contentField.className = "tag-content-field";
   const contentLabel = document.createElement("span");
@@ -99,8 +99,6 @@ export function renderAttributes(panel, tag, onAttributeChange, onTextChange, on
     contentLabel.textContent = "이 태그는 안에 내용을 넣지 않아요";
   }
 
-  attributeList.append(contentField);
-
   panel.setAttribute("aria-live", "polite");
-  panel.replaceChildren(head, attributeList);
+  panel.replaceChildren(head, attributeList, contentField);
 }

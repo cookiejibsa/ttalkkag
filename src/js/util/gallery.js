@@ -53,11 +53,28 @@ function formatDate(value) {
     }).format(date);
 }
 
+// 프로젝트를 목록에서 지우고 갤러리와 프로젝트 수를 다시 그립니다.
+function deleteProject(index) {
+    const projects = loadProjects();
+    const [removed] = projects.splice(index, 1);
+    if (!removed) return;
+    if (!confirm(`"${removed.name || "이름 없는 프로젝트"}" 프로젝트를 삭제할까요?\n삭제하면 되돌릴 수 없습니다.`)) return;
+
+    localStorage.setItem(ItemType.Projects, JSON.stringify(projects));
+    renderGallery();
+
+    const projectsStat = document.querySelector('[data-stat="projects"]');
+    if (projectsStat) projectsStat.textContent = String(projects.length);
+}
+
 // 프로젝트 정보를 사용해 카드와 격리된 HTML 미리보기를 생성합니다.
 function createProjectCard(project, index) {
+    const wrap = document.createElement("div");
+    wrap.className = "project-card-wrap";
+
     const card = document.createElement("a");
     card.className = "project-card";
-    card.href = "workspace.html";
+    card.href = `workspace.html?project=${encodeURIComponent(project.name)}`;
     card.dataset.projectIndex = String(index);
 
     const thumbnail = document.createElement("div");
@@ -82,7 +99,17 @@ function createProjectCard(project, index) {
 
     metadata.append(name, date);
     card.append(thumbnail, metadata);
-    return card;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "card-delete";
+    deleteButton.textContent = "×";
+    deleteButton.title = "프로젝트 삭제";
+    deleteButton.setAttribute("aria-label", `${project.name || "이름 없는"} 프로젝트 삭제`);
+    deleteButton.addEventListener("click", () => deleteProject(index));
+
+    wrap.append(card, deleteButton);
+    return wrap;
 }
 
 // 새 워크스페이스를 열 수 있는 갤러리 마지막 카드를 생성합니다.

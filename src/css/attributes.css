@@ -121,9 +121,10 @@
   background: var(--accent-red-dim);
 }
 
-/* 태그 내용: 속성 칸 두 개 너비, 두 줄 높이 */
+/* 태그 내용: 속성 칸들 아래, 제작부 바로 위에 한 줄 전체 */
 .tag-content-field {
-  grid-column: span 2;
+  flex-shrink: 0;
+  margin-top: auto;
   height: 3rem;
   padding: 0.3rem 0.3rem 0.3rem 0.55rem;
   align-items: stretch;
@@ -141,16 +142,27 @@ textarea.tag-content-input {
 }
 
 .tag-content-label {
+  padding-top: 0.25rem;
+}
+
+textarea.tag-content-input {
+  height: auto;
+  padding: 0.25rem 0.4rem;
+  line-height: 1.4;
+  resize: none;
+}
+
+.tag-content-label {
   flex-shrink: 0;
   font-size: 0.8rem;
   color: var(--text-muted);
 }
 
 .tag-content-field.is-empty {
-  height: 2rem;
-  align-items: center;
+  height: auto;
+  padding: 0;
   background: transparent;
-  border-style: dashed;
+  border: none;
 }
 
 .tag-content-field.is-empty .tag-content-label {

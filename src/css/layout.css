@@ -71,6 +71,16 @@ main {
   max-width: 100%;
 }
 
+/* 미리보기를 잡아 끌어서 렌더링부에 바로 놓을 수 있음 */
+.tag-preview {
+  cursor: grab;
+  touch-action: none;
+}
+
+.tag-preview > * {
+  pointer-events: none;
+}
+
 /* 제작 후 배치 중: 렌더링부를 눌러 원하는 자리에 넣는다 */
 .render-pane.is-placing {
   cursor: copy;
@@ -93,6 +103,46 @@ main {
 }
 
 .render-pane.is-placing .insert-line.is-visible {
+  display: block;
+}
+
+/* 렌더링부 요소에 마우스를 올리면: 파란 테두리 + 왼쪽 위 삭제 버튼 */
+.select-box {
+  position: absolute;
+  z-index: 6;
+  display: none;
+  border: 2px solid var(--accent-blue);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.select-box.is-visible {
+  display: block;
+}
+
+.select-delete {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--bg-panel);
+  background: var(--text);
+  border: 1px solid var(--bg-panel);
+  border-radius: var(--radius);
+  pointer-events: auto;
+}
+
+.select-delete:hover {
+  color: var(--text);
+  background: var(--accent-red-hover);
+}
+
+/* 요소를 잡고 끄는 동안에도 들어갈 자리 표시선을 보여줌 */
+.render-pane.is-moving .insert-line.is-visible {
   display: block;
 }
 
