@@ -4,6 +4,7 @@ import { Load, Save, ItemType } from "./storage.js";
 const imageInput = document.getElementById("imageInput");
 const avatar = document.querySelector(".profile-avatar");
 const nameInput = document.getElementById("profile-name");
+const removeAvatarButton = document.getElementById("removeAvatar");
 const EMPTY_AVATAR = "/assets/icons/avatar_empty.jpg";
 
 // 현재 날짜를 브라우저의 현지 시간 기준 YYYY-MM-DD 형식으로 반환합니다.
@@ -88,8 +89,9 @@ if (window.location.pathname.endsWith("/workspace.html")) {
 }
 saveProfile(profile);
 
-if (imageInput && avatar && nameInput) {
+if (imageInput && avatar && nameInput && removeAvatarButton) {
     avatar.src = profile.avatar || EMPTY_AVATAR;
+    removeAvatarButton.hidden = !profile.avatar;
     nameInput.value = typeof profile.name === "string" ? profile.name : "";
     renderProfileStats(profile, today);
 
@@ -110,6 +112,15 @@ if (imageInput && avatar && nameInput) {
         }
     });
 
+    // 커스텀 프로필 사진을 기본 아바타로 되돌리고 변경 내용을 저장합니다.
+    removeAvatarButton.addEventListener("click", () => {
+        profile.avatar = "";
+        avatar.src = EMPTY_AVATAR;
+        imageInput.value = "";
+        removeAvatarButton.hidden = true;
+        saveProfile(profile);
+    });
+
     // 선택한 이미지 파일을 읽어 프로필 미리보기와 저장 데이터를 갱신합니다.
     imageInput.addEventListener("change", (event) => {
         const file = event.target.files?.[0];
@@ -122,6 +133,8 @@ if (imageInput && avatar && nameInput) {
             avatar.src = reader.result;
             profile.avatar = reader.result;
             profile.name = nameInput.value.trim();
+            removeAvatarButton.hidden = false;
+            imageInput.value = "";
             saveProfile(profile);
         });
         reader.readAsDataURL(file);
