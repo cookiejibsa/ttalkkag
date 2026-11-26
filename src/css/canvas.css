@@ -5,6 +5,14 @@
   align-items: center;
   padding: 0.5rem 0.75rem;
   color: var(--text);
+  outline: 1px dashed transparent;
+  outline-offset: -4px;
+  transition: outline-color 0.15s, background-color 0.15s;
+}
+
+.tag-preview.is-drop-target-active {
+  outline-color: var(--accent-blue);
+  background: var(--accent-blue-dim);
 }
 
 .tag-preview [data-ddalkkak-preview="true"] {

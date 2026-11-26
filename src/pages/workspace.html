@@ -13,118 +13,110 @@
     <link rel="stylesheet" href="../css/attributes.css" />
     <link rel="stylesheet" href="../css/canvas.css" />
   </head>
-  <body>
+  <body class="workspace-page">
     <header>
-      <a class="brand" href="../../index.html">
-        <!-- 로고 + "딸깍" (소개 페이지로 이동) -->
-        <img
-          id="brand-logo"
-          src="../../assets/icons/logo-mono.svg"
-          alt="로고"
+      <div class="header-identity">
+        <a class="brand" href="../../index.html" aria-label="딸깍 소개 페이지">
+          <img id="brand-logo" src="../../assets/icons/logo-mono.svg" alt="" />
+          <span id="brand-name">딸깍</span>
+        </a>
+        <div class="top-divider" aria-hidden="true"></div>
+        <input
+          id="project-name"
+          type="text"
+          name="projectName"
+          placeholder="프로젝트 이름을 입력해주세요"
+          aria-label="프로젝트 이름"
+          maxlength="80"
         />
-        <div id="brand-name">딸깍</div>
-      </a>
-      <div class="top-divider" aria-hidden="true"></div>
-      <!-- 로고와 입력 필드 사이 구분선 -->
-      <input
-        id="project-name"
-        type="text"
-        name="projectName"
-        placeholder="프로젝트 이름을 입력해주세요"
-      />
-      <!-- 프로젝트 이름 -->
-      <div class="toolbar-actions">
-        <button class="toolbar-btn" data-action="new-tab">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/new-tab.svg"
-            alt="새 탭"
-          />새 탭
-        </button>
-        <button class="toolbar-btn" data-action="export">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/export.svg"
-            alt="내보내기"
-          />내보내기
-        </button>
-
-        <button class="toolbar-btn" data-action="save">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/save.svg"
-            alt="저장"
-          />저장
-        </button>
-        <button class="toolbar-btn" data-action="load">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/load.svg"
-            alt="불러오기"
-          />불러오기
-        </button>
-        <button class="toolbar-btn" data-action="reset">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/reset.svg"
-            alt="초기화"
-          />초기화
-        </button>
       </div>
+
+      <nav class="toolbar-actions" aria-label="프로젝트 메뉴">
+        <button class="toolbar-btn" type="button" data-action="preview">
+          <img class="btn-icon" src="../../assets/icons/new-tab.svg" alt="" />
+          <span>미리보기</span>
+        </button>
+        <button class="toolbar-btn" type="button" data-action="export">
+          <img class="btn-icon" src="../../assets/icons/export.svg" alt="" />
+          <span>내보내기</span>
+        </button>
+        <a class="toolbar-btn dashboard-link" href="dashboard.html">
+          <img class="btn-icon" src="../../assets/icons/dashboard.svg" alt="" />
+          <span>대시보드로 돌아가기</span>
+        </a>
+        <div class="menu-wrap">
+          <button
+            class="toolbar-btn menu-toggle"
+            type="button"
+            data-action="menu-toggle"
+            aria-label="프로젝트 메뉴 열기"
+            aria-expanded="false"
+            aria-controls="project-menu"
+          >
+            <span class="hamburger-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+          <div id="project-menu" class="project-menu" hidden>
+            <button type="button" data-action="save">저장</button>
+            <button type="button" data-action="load">불러오기</button>
+            <div class="menu-separator" aria-hidden="true"></div>
+            <button type="button" class="menu-item-danger" data-action="reset">초기화</button>
+          </div>
+        </div>
+      </nav>
     </header>
     <hr id="header-divider" />
+
     <main>
-      <section class="controls">
-        <!-- 태그 선택 / 속성 편집 / 제작 영역 -->
-        <aside class="tag-list">
-          <!-- html 태그 종류 (좌측 목록) -->
-          <div class="tag-category"></div>
-          <div class="tag-chip"></div>
+      <section class="controls" aria-label="태그 작업 영역">
+        <aside class="tag-list" aria-label="HTML 태그 선택">
+          <div class="tag-category" aria-label="태그 종류"></div>
+          <div class="tag-chip" aria-label="태그 목록"></div>
         </aside>
 
-        <section class="workspace">
-          <!-- 속성 편집 & 태그 제작 -->
-          <div class="attr-panel"></div>
-          <div class="preview-make">
-            <!-- 태그 미리보기 및 제작 영역 -->
-            <div class="tag-preview"></div>
+        <section class="workspace" aria-label="태그 편집 및 미리보기">
+          <section class="attr-panel" data-drop-target="tag-select" aria-label="속성 편집"></section>
+          <section class="preview-make" aria-label="태그 미리보기">
+            <div class="panel-heading">태그 미리보기</div>
+            <div class="tag-preview" data-drop-target="tag-select" aria-live="polite"></div>
             <button type="button" class="make-action">제작</button>
-          </div>
+          </section>
         </section>
       </section>
 
-      <section class="output">
-        <!-- 결과 확인 영역 -->
-        <div class="render-pane">
-          <button class="pane-btn" type="button" data-action="new-tab">새 탭</button>
-          <iframe id="html-preview" src="about:blank"></iframe>
-        </div>
-        <div class="splitter"></div>
-        <div class="code-pane">
-          <button class="pane-btn" type="button" data-action="copy-code">
-            복사
-          </button>
-
-          <!-- 코드 창 전체 -->
+      <section class="output" aria-label="HTML 결과">
+        <section class="render-pane" aria-label="렌더링 결과">
+          <iframe id="html-preview" title="생성한 HTML 미리보기" sandbox="" src="about:blank"></iframe>
+        </section>
+        <div class="splitter" role="separator" aria-label="미리보기와 코드 영역 크기 조절" aria-orientation="vertical" tabindex="0"></div>
+        <section class="code-pane" aria-label="HTML 코드">
+          <button class="pane-btn" type="button" data-action="copy-code">복사</button>
           <div class="code-window">
-            <!-- 실제 스크롤 영역 -->
             <div class="code-editor">
-              <div id="line-numbers"></div>
+              <div id="line-numbers" aria-hidden="true"></div>
               <pre><code id="code-output"></code></pre>
             </div>
-
-            <!-- 코드 창 중앙에 표시되는 메시지 -->
-            <div id="copy-message"></div>
+            <div id="copy-message" role="status" aria-live="polite"></div>
           </div>
-        </div>
+        </section>
       </section>
     </main>
 
-    <script src="../js/header.js"></script>
-    <script type="module" src="../js/util/codeGenerator.js"></script>
+    <dialog id="load-project-dialog" aria-labelledby="load-dialog-title">
+      <div class="dialog-content">
+        <h2 id="load-dialog-title">저장한 프로젝트 불러오기</h2>
+        <label for="saved-projects">프로젝트</label>
+        <select id="saved-projects"></select>
+        <p id="load-empty-message" hidden>저장된 프로젝트가 없습니다.</p>
+        <div class="dialog-actions">
+          <button type="button" data-action="load-cancel">취소</button>
+          <button type="button" class="dialog-primary" data-action="load-confirm">불러오기</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script type="module" src="../js/header.js"></script>
     <script type="module" src="../js/main.js"></script>
     <script type="module" src="../js/util/splitter.js"></script>
     <script type="module" src="../js/util/profile.js"></script>
   </body>
 </html>
-

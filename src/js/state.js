@@ -17,6 +17,28 @@ export function selectTag(tag) {
   return getDraft();
 }
 
+/** Restore a previously saved editable tag draft. @param {DraftTag & { text?: string }} draft */
+export function restoreDraft(draft) {
+  selectedTag = {
+    tagId: draft.tagId,
+    category: draft.category,
+    needCloseTag: draft.needCloseTag,
+    attributes: [],
+  };
+  draftAttributes = Array.isArray(draft.attributes)
+    ? draft.attributes.map(({ name, value }) => ({ name: String(name), value: String(value) }))
+    : [];
+  draftText = typeof draft.text === "string" ? draft.text : "";
+  return getDraft();
+}
+
+/** Clear the current project draft. */
+export function clearDraft() {
+  selectedTag = null;
+  draftAttributes = [];
+  draftText = "";
+}
+
 /** @param {number} index @param {string} name */
 export function setAttributeName(index, name) {
   if (draftAttributes[index]) draftAttributes[index].name = name;
