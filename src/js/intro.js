@@ -154,7 +154,7 @@ window.addEventListener("touchend", (event) => {
   if (distance < -50) move(-1, true);
 });
 
-document.querySelector(".hero-scroll").addEventListener("click", (event) => {
-  event.preventDefault();
+// 첫 화면 가운데 동그란 버튼: 누르면 다음 장면으로
+document.querySelector(".hero-scroll-button").addEventListener("click", () => {
   move(1, true);
 });

@@ -9,7 +9,7 @@ main {
   position: relative;
   flex: 1;
   min-height: 0;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .scene {
@@ -159,6 +159,70 @@ main {
 .hero-start-button:hover {
   background: var(--accent-red-hover);
   border-color: var(--accent-red-hover);
+}
+
+.hero-scroll-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2.3rem;
+  z-index: 1;
+  width: fit-content;
+  height: 2.8rem;
+  margin: 0 auto;
+  padding: 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 3px;
+  border-radius: 0.5rem;
+  animation: fade-up 0.6s ease-out 0.9s both;
+  transition: color 0.2s, background 0.2s, border-bottom-width 0.15s, transform 0.8s cubic-bezier(0.55, 0, 0.9, 0.4), opacity 0.8s;
+}
+
+.hero-scroll-button:hover,
+.hero-scroll-button:focus-visible {
+  color: var(--text);
+  background: var(--bg-hover);
+  border-bottom-width: 2px;
+}
+
+.hero-scroll-button:active {
+  border-bottom-width: 1px;
+}
+
+.scroll-arrow {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scroll-label {
+  max-width: 0;
+  margin-left: -0.6rem;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition: max-width 0.6s ease-in-out, margin-left 0.6s ease-in-out, opacity 0.45s;
+}
+
+.hero-scroll-button:hover .scroll-label,
+.hero-scroll-button:focus-visible .scroll-label {
+  max-width: 12rem;
+  margin-left: 0;
+  opacity: 1;
 }
 
 .project-image-layer {
@@ -358,49 +422,14 @@ main {
   animation-delay: 0.5s, -0.8s;
 }
 
-.hero-bottom {
-  position: absolute;
-  left: 2rem;
-  right: 2rem;
-  bottom: 1.5rem;
-  z-index: 1;
-  padding-top: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--border);
-  font-family: monospace;
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
-  animation: fade-up 0.6s ease-out 1.2s both;
-}
-
-.hero-bottom a {
-  margin-left: auto;
-}
-
-
-.hero-process {
-  color: var(--text-faint);
-}
-
-.hero-scroll {
-  color: var(--text-muted);
-}
-
-.hero-scroll:hover {
-  color: var(--text);
-}
-
 .hero-title,
-.hero-description,
-.hero-bottom {
+.hero-description {
   transition: transform 0.8s cubic-bezier(0.55, 0, 0.9, 0.4), opacity 0.8s;
 }
 
 .s1 .hero-title,
 .s1 .hero-description,
-.s1 .hero-bottom {
+.s1 .hero-scroll-button {
   transform: translateY(-120vh) scaleY(1.3);
   opacity: 0;
 }
@@ -2255,11 +2284,6 @@ main {
   .drag-sticker,
   .preview-card {
     display: none;
-  }
-
-  .hero-bottom {
-    flex-direction: column;
-    gap: 0.5rem;
   }
 
   .scene-problem {
