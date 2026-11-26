@@ -24,10 +24,13 @@
   <main>
     <section class="profile"> <!-- 사용자 간략 정보 (v2, 삭제될 수 있음) -->
       <input type="file" id="imageInput" accept="image/*">
-      <label for="imageInput" style="position:relative">
-        <img class="profile-avatar">
-        <img class="camera" src="/assets/icons/camera.png">
-      </label>
+      <div class="avatar-control">
+        <label class="avatar-upload" for="imageInput" title="프로필 사진 변경">
+          <img class="profile-avatar" alt="프로필 사진">
+          <img class="camera" src="/assets/icons/camera.png" alt="">
+        </label>
+        <button class="avatar-remove" id="removeAvatar" type="button" aria-label="프로필 사진 삭제" title="프로필 사진 삭제" hidden>×</button>
+      </div>
       <input id="profile-name" type="text" name="profileName" placeholder="이름을 입력해주세요"> <!-- 사용자 이름 -->
       <ul class="profile-stats">
         <li class="stat">
@@ -45,34 +48,9 @@
       </ul>
     </section>
 
-    <section class="gallery"> <!-- 기존 프로젝트 미리보기. 카드는 저장된 프로젝트로 JS가 채울 예정 (v2) -->
-      <a class="project-card" href="workspace.html">
-        <div class="card-thumb"></div> <!-- 렌더링 미리보기 -->
-        <div class="card-meta">
-          <div class="card-name">프로젝트 이름</div>
-          <div class="card-date">마지막 수정 -</div>
-        </div>
-      </a>
-      <a class="project-card" href="workspace.html">
-        <div class="card-thumb"></div>
-        <div class="card-meta">
-          <div class="card-name">프로젝트 이름</div>
-          <div class="card-date">마지막 수정 -</div>
-        </div>
-      </a>
-      <a class="project-card" href="workspace.html">
-        <div class="card-thumb"></div>
-        <div class="card-meta">
-          <div class="card-name">프로젝트 이름</div>
-          <div class="card-date">마지막 수정 -</div>
-        </div>
-      </a>
-      <a class="project-card new-card" href="workspace.html"> <!-- 항상 마지막 칸 -->
-        <img class="new-card-icon" src="../../assets/icons/plus.svg" alt="">
-        <span>새 프로젝트</span>
-      </a>
-    </section>
+    <section class="gallery" aria-label="프로젝트 목록"></section>
   </main>
-  <script src="/src/js/profile.js"></script>
+  <script type="module" src="../js/util/profile.js"></script>
+  <script type="module" src="../js/util/gallery.js"></script>
 </body>
 </html>

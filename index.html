@@ -23,10 +23,381 @@
   </header>
   <hr id="header-divider">
   <main>
-    <section class="intro"> <!-- 페이지 소개 -->
-      <p class="intro-placeholder">페이지 소개</p>
+    <section class="scene intro-page"> <!-- 0. 페이지 소개 -->
+      <div class="hero-content">
+        <div class="hero-title">
+          <p class="hero-eyebrow">MAKE YOUR FIRST WEB PAGE</p>
+          <h1 id="hero-title">TTALKKAG</h1>
+        </div>
+
+        <div class="hero-description">
+          <p class="hero-tagline">SELECT / EDIT / PLACE</p>
+          <p class="hero-subtitle">
+            처음 시작하는 HTML, 가능성을 펼치고 가볍게 시작하세요
+          </p>
+        </div>
+      </div>
+
+      <button class="hero-scroll-button" type="button" aria-label="아래로 내려 둘러보기"> <!-- 키캡 모양 스크롤 안내 -->
+        <svg class="scroll-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+        <span>SCROLL</span>
+        <span class="scroll-label">DOWN TO EXPLORE</span>
+      </button>
+
+      <!-- 주변에 떠 있는 장식 요소 -->
+      <div class="project-image-layer" aria-hidden="true">
+        <div class="floating-item tag-heading">&lt;h1&gt;</div>
+
+        <div class="floating-item tag-button">&lt;button&gt;</div>
+
+        <div class="floating-item tag-attribute">{ }</div>
+
+        <div class="floating-item preview-card">
+          <span class="preview-label">PREVIEW</span>
+          <strong class="preview-title">안녕하세요!</strong>
+          <span class="preview-line"></span>
+        </div>
+
+        <div class="floating-item click-sticker">
+          <span>태그를 골라</span>
+          <strong>딸깍!</strong>
+        </div>
+
+        <div class="floating-item drag-sticker">DRAG &amp; DROP</div>
+      </div>
     </section>
+
+    <section class="scene scene-problem" id="scene-problem"> <!-- 1. 초보자에게 HTML은 어렵다 -->
+      <div class="mock-window">
+        <div class="mock-bar">
+          <span class="mock-dots"></span>
+          <span class="mock-address">my-first-page.html</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-page">
+            <nav class="mock-nav">
+              <strong class="mock-logo">내 첫 페이지</strong>
+              <span class="mock-links">홈 · 소개 · 연락</span>
+            </nav>
+            <div class="mock-hero">
+              <div class="mock-intro">
+                <strong class="mock-heading">안녕하세요!</strong>
+                <p class="mock-text">제 첫 웹페이지예요</p>
+                <span class="mock-button">눌러보기</span>
+              </div>
+              <span class="mock-image">
+                <svg viewBox="0 0 200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect class="photo-sky" width="200" height="220"/>
+                  <circle class="photo-sun" cx="140" cy="62" r="24"/>
+                  <ellipse class="photo-cloud" cx="58" cy="60" rx="30" ry="9"/>
+                  <ellipse class="photo-cloud" cx="76" cy="51" rx="18" ry="10"/>
+                  <path class="photo-far" d="M0 150 L45 92 L88 140 L132 96 L200 160 V220 H0 Z"/>
+                  <path class="photo-near" d="M0 182 Q55 140 105 172 T200 168 V220 H0 Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="mock-page mock-xray" aria-hidden="true"> <!-- 돋보기 안에서만 보이는 HTML -->
+            <pre class="xray-source"><span class="code-punc">&lt;!</span><span class="code-tag">DOCTYPE</span> <span class="code-attr">html</span><span class="code-punc">&gt;</span>
+<span class="code-punc">&lt;</span><span class="code-tag">html</span> <span class="code-attr">lang</span>=<span class="code-value">"ko"</span><span class="code-punc">&gt;</span>
+<span class="code-punc">&lt;</span><span class="code-tag">head</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">meta</span> <span class="code-attr">charset</span>=<span class="code-value">"UTF-8"</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">meta</span> <span class="code-attr">name</span>=<span class="code-value">"viewport"</span> <span class="code-attr">content</span>=<span class="code-value">"width=device-width, initial-scale=1.0"</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">title</span><span class="code-punc">&gt;</span>내 첫 페이지<span class="code-punc">&lt;/</span><span class="code-tag">title</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">link</span> <span class="code-attr">rel</span>=<span class="code-value">"stylesheet"</span> <span class="code-attr">href</span>=<span class="code-value">"style.css"</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">style</span><span class="code-punc">&gt;</span>
+    <span class="code-selector">body</span> { <span class="code-attr">margin</span>: <span class="code-value">0</span>; <span class="code-attr">font-family</span>: <span class="code-value">sans-serif</span>; <span class="code-attr">background</span>: <span class="code-value">#f2f2f2</span>; }
+    <span class="code-selector">nav</span> { <span class="code-attr">display</span>: <span class="code-value">flex</span>; <span class="code-attr">justify-content</span>: <span class="code-value">space-between</span>; <span class="code-attr">padding</span>: <span class="code-value">12px 0</span>; }
+    <span class="code-selector">.hero</span> { <span class="code-attr">display</span>: <span class="code-value">grid</span>; <span class="code-attr">grid-template-columns</span>: <span class="code-value">1fr 1fr</span>; <span class="code-attr">gap</span>: <span class="code-value">20px</span>; }
+    <span class="code-selector">.title</span> { <span class="code-attr">font-size</span>: <span class="code-value">40px</span>; <span class="code-attr">font-weight</span>: <span class="code-value">900</span>; }
+    <span class="code-selector">button</span> { <span class="code-attr">padding</span>: <span class="code-value">8px 16px</span>; <span class="code-attr">color</span>: <span class="code-value">white</span>; <span class="code-attr">background</span>: <span class="code-value">black</span>; }
+    <span class="code-selector">img</span> { <span class="code-attr">width</span>: <span class="code-value">100%</span>; <span class="code-attr">border-radius</span>: <span class="code-value">8px</span>; }
+  <span class="code-punc">&lt;/</span><span class="code-tag">style</span><span class="code-punc">&gt;</span>
+<span class="code-punc">&lt;/</span><span class="code-tag">head</span><span class="code-punc">&gt;</span>
+<span class="code-punc">&lt;</span><span class="code-tag">body</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">nav</span> <span class="code-attr">class</span>=<span class="code-value">"menu"</span><span class="code-punc">&gt;</span><span class="code-punc">&lt;</span><span class="code-tag">a</span> <span class="code-attr">href</span>=<span class="code-value">"#"</span><span class="code-punc">&gt;</span>홈<span class="code-punc">&lt;/</span><span class="code-tag">a</span><span class="code-punc">&gt;</span> · <span class="code-punc">&lt;</span><span class="code-tag">a</span> <span class="code-attr">href</span>=<span class="code-value">"#"</span><span class="code-punc">&gt;</span>소개<span class="code-punc">&lt;/</span><span class="code-tag">a</span><span class="code-punc">&gt;</span> · <span class="code-punc">&lt;</span><span class="code-tag">a</span> <span class="code-attr">href</span>=<span class="code-value">"#"</span><span class="code-punc">&gt;</span>연락<span class="code-punc">&lt;/</span><span class="code-tag">a</span><span class="code-punc">&gt;</span><span class="code-punc">&lt;/</span><span class="code-tag">nav</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">main</span> <span class="code-attr">class</span>=<span class="code-value">"hero"</span><span class="code-punc">&gt;</span>
+    <span class="code-punc">&lt;</span><span class="code-tag">section</span><span class="code-punc">&gt;</span>
+      <span class="code-punc">&lt;</span><span class="code-tag">h1</span> <span class="code-attr">class</span>=<span class="code-value">"title"</span><span class="code-punc">&gt;</span>안녕하세요!<span class="code-punc">&lt;/</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span>
+      <span class="code-punc">&lt;</span><span class="code-tag">p</span><span class="code-punc">&gt;</span>제 첫 웹페이지예요<span class="code-punc">&lt;/</span><span class="code-tag">p</span><span class="code-punc">&gt;</span>
+      <span class="code-punc">&lt;</span><span class="code-tag">button</span> <span class="code-attr">type</span>=<span class="code-value">"button"</span> <span class="code-attr">onclick</span>=<span class="code-value">"sayHi()"</span><span class="code-punc">&gt;</span>눌러보기<span class="code-punc">&lt;/</span><span class="code-tag">button</span><span class="code-punc">&gt;</span>
+    <span class="code-punc">&lt;/</span><span class="code-tag">section</span><span class="code-punc">&gt;</span>
+    <span class="code-punc">&lt;</span><span class="code-tag">img</span> <span class="code-attr">src</span>=<span class="code-value">"photo.png"</span> <span class="code-attr">alt</span>=<span class="code-value">"풍경"</span> <span class="code-attr">width</span>=<span class="code-value">"300"</span> <span class="code-attr">height</span>=<span class="code-value">"320"</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;/</span><span class="code-tag">main</span><span class="code-punc">&gt;</span>
+  <span class="code-punc">&lt;</span><span class="code-tag">script</span><span class="code-punc">&gt;</span>
+    <span class="code-tag">function</span> <span class="code-func">sayHi</span>() { <span class="code-func">alert</span>(<span class="code-value">"반가워요!"</span>); }
+  <span class="code-punc">&lt;/</span><span class="code-tag">script</span><span class="code-punc">&gt;</span>
+<span class="code-punc">&lt;/</span><span class="code-tag">body</span><span class="code-punc">&gt;</span>
+<span class="code-punc">&lt;/</span><span class="code-tag">html</span><span class="code-punc">&gt;</span></pre>
+            <nav class="mock-nav xray-target">
+              <strong class="mock-logo xray-ghost">내 첫 페이지</strong>
+              <code class="xray-code"><span><span class="code-punc">&lt;</span><span class="code-tag">nav</span> <span class="code-attr">class</span>=<span class="code-value">"menu"</span><span class="code-punc">&gt;</span><br>  <span class="code-punc">&lt;</span><span class="code-tag">a</span> <span class="code-attr">href</span>=<span class="code-value">"#"</span><span class="code-punc">&gt;</span>홈<span class="code-punc">&lt;/</span><span class="code-tag">a</span><span class="code-punc">&gt;</span> · <span class="code-punc">&lt;</span><span class="code-tag">a</span> <span class="code-attr">href</span>=<span class="code-value">"#"</span><span class="code-punc">&gt;</span>소개<span class="code-punc">&lt;/</span><span class="code-tag">a</span><span class="code-punc">&gt;</span> · <span class="code-punc">&lt;</span><span class="code-tag">a</span> <span class="code-attr">href</span>=<span class="code-value">"#"</span><span class="code-punc">&gt;</span>연락<span class="code-punc">&lt;/</span><span class="code-tag">a</span><span class="code-punc">&gt;</span><span class="code-punc">&lt;/</span><span class="code-tag">nav</span><span class="code-punc">&gt;</span></span></code>
+            </nav>
+            <div class="mock-hero">
+              <div class="mock-intro">
+                <strong class="mock-heading xray-target">
+                  <span class="xray-ghost">안녕하세요!</span>
+                  <code class="xray-code"><span><span class="code-comment">&lt;!-- 인사말 제목 --&gt;</span><br><span class="code-punc">&lt;</span><span class="code-tag">h1</span> <span class="code-attr">class</span>=<span class="code-value">"title"</span><span class="code-punc">&gt;</span>안녕하세요!<span class="code-punc">&lt;/</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span></span></code>
+                </strong>
+                <p class="mock-text xray-target">
+                  <span class="xray-ghost">제 첫 웹페이지예요</span>
+                  <code class="xray-code"><span><span class="code-punc">&lt;</span><span class="code-tag">p</span><span class="code-punc">&gt;</span>제 첫 웹페이지예요<span class="code-punc">&lt;/</span><span class="code-tag">p</span><span class="code-punc">&gt;</span></span></code>
+                </p>
+                <span class="mock-button xray-target">
+                  <span class="xray-ghost">눌러보기</span>
+                  <code class="xray-code"><span><span class="code-punc">&lt;</span><span class="code-tag">button</span> <span class="code-attr">type</span>=<span class="code-value">"button"</span><span class="code-punc">&gt;</span><br>  <span class="code-attr">onclick</span>=<span class="code-value">"sayHi()"</span><span class="code-punc">&gt;</span>눌러보기<span class="code-punc">&lt;/</span><span class="code-tag">button</span><span class="code-punc">&gt;</span></span></code>
+                </span>
+              </div>
+              <span class="mock-image xray-target">
+                <code class="xray-code"><span><span class="code-comment">&lt;!-- 오른쪽 사진 --&gt;</span><br><span class="code-punc">&lt;</span><span class="code-tag">figure</span> <span class="code-attr">class</span>=<span class="code-value">"photo"</span><span class="code-punc">&gt;</span><br>  <span class="code-punc">&lt;</span><span class="code-tag">img</span> <span class="code-attr">src</span>=<span class="code-value">"photo.png"</span><br>       <span class="code-attr">alt</span>=<span class="code-value">"풍경"</span><br>       <span class="code-attr">width</span>=<span class="code-value">"300"</span><br>       <span class="code-attr">height</span>=<span class="code-value">"320"</span><br>       <span class="code-attr">loading</span>=<span class="code-value">"lazy"</span><span class="code-punc">&gt;</span><br>  <span class="code-punc">&lt;</span><span class="code-tag">figcaption</span><span class="code-punc">&gt;</span><br>    산과 하늘<br>  <span class="code-punc">&lt;/</span><span class="code-tag">figcaption</span><span class="code-punc">&gt;</span><br><span class="code-punc">&lt;/</span><span class="code-tag">figure</span><span class="code-punc">&gt;</span></span></code>
+              </span>
+            </div>
+          </div>
+          <span class="mock-lens"></span>
+        </div>
+      </div>
+
+      <div class="problem-text">
+        <h2 class="scene-title">웹페이지,<br>만들어 보고 싶은데…</h2>
+        <p class="scene-desc">
+          처음 개발하는 사람들에겐..<br>
+          태그 이름도, 속성도 처음엔 전부 낯설어요.
+        </p>
+        <ul class="problem-bubbles">
+          <li>&lt;span&gt;이 도대체 뭐하는 놈임?</li>
+          <li>속성은 어떻게 쓰는건데..?</li>
+          <li>&lt;label&gt;에 for는 또 누구랑 연결하라는 거야??</li>
+          <li>&lt;header&gt;랑 &lt;div&gt;가 뭐가 다른데;;</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="scene scene-build"> <!-- 2. 조립하고 쌓기 + 3. 기타 기능 -->
+      <div class="scene-head build-head">
+        <p class="scene-lead">우리 사이트에선..?</p>
+        <h2 class="scene-title">고르고, 끼우고, 쌓으면 끝</h2>
+      </div>
+
+      <div class="scene-head feature-head">
+        <h2 class="scene-title">만든 다음에도 딸깍</h2>
+      </div>
+
+      <div class="build-part"> <!-- PART 1. 작업 화면에서 태그 만들기 -->
+        <div class="build-app" aria-hidden="true"> <!-- 실제 작업 화면처럼 -->
+          <div class="app-bar">
+            <span class="mock-dots"></span>
+            <strong class="app-logo">딸깍</strong>
+            <span class="app-project">내 첫 페이지</span>
+          </div>
+          <div class="app-body">
+            <ul class="app-categories">
+              <li class="is-on">텍스트</li>
+              <li>미디어</li>
+              <li>폼</li>
+              <li>구조</li>
+            </ul>
+            <ul class="app-tags">
+              <li class="app-tag-h1">h1</li>
+              <li>h2</li>
+              <li>p</li>
+              <li>span</li>
+              <li>a</li>
+            </ul>
+            <div class="app-main">
+              <div class="app-attrs">
+                <p class="app-attrs-empty">왼쪽에서 태그를 골라주세요</p>
+                <div class="app-field field-class">
+                  <span class="app-field-name">class</span>
+                  <span class="app-input"><span class="typed typed-class">title</span></span>
+                </div>
+                <div class="app-field field-text">
+                  <span class="app-field-name">내용</span>
+                  <span class="app-input"><span class="typed typed-text">안녕하세요!</span></span>
+                </div>
+              </div>
+              <div class="app-make-row">
+                <div class="app-preview">
+                  <code class="app-preview-code"><span><span class="code-punc">&lt;</span><span class="code-tag">h1</span> <span class="code-attr">class</span>=<span class="code-value">"title"</span><span class="code-punc">&gt;</span>안녕하세요!<span class="code-punc">&lt;/</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span></span></code>
+                </div>
+                <span class="app-make">제작</span>
+              </div>
+            </div>
+          </div>
+          <code class="app-ghost"><span><span class="code-punc">&lt;</span><span class="code-tag">h1</span> <span class="code-attr">class</span>=<span class="code-value">"title"</span><span class="code-punc">&gt;</span>안녕하세요!<span class="code-punc">&lt;/</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span></span></code>
+          <span class="build-cursor app-cursor"><svg viewBox="0 0 24 32" aria-hidden="true"><path class="cursor-arrow" d="M2 2 L2 24.5 L7.6 19 L11.2 27.6 L15 26 L11.4 17.6 L19 17.6 Z"/></svg></span>
+        </div>
+
+        <p class="app-caption">
+          <span class="caption-pick">태그를 고르고</span>
+          <span class="caption-attr">속성을 설정한 다음</span>
+          <span class="caption-make">제작을 누르면 태그가 완성돼요</span>
+        </p>
+      </div>
+
+      <div class="build-center"> <!-- PART 2. 렌더링부에 배치 → 가상 페이지, 3. 기능 소개 -->
+        <div class="mock-toolbar">
+          <div class="feature">
+            <span class="mock-tool">새 탭</span>
+            <div class="feature-card">
+              <strong>새 탭에서 열기</strong>
+              <p>버튼 한 번이면 만든 페이지가 새 탭에서 열려요</p>
+              <div class="demo demo-tab">
+                <div class="demo-tabs">
+                  <span class="demo-tab-item">딸깍</span>
+                  <span class="demo-tab-item demo-tab-new">my-page</span>
+                </div>
+                <div class="demo-view">
+                  <span class="demo-view-code"><span class="code-punc">&lt;</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span>안녕하세요!<span class="code-punc">&lt;/</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span></span>
+                  <strong class="demo-view-page">안녕하세요!</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span class="mock-tool">내보내기</span>
+            <div class="feature-card">
+              <strong>내보내기</strong>
+              <p>완성한 코드를 index.html 파일로 내려받아요</p>
+              <div class="demo demo-export">
+                <span class="demo-file">index.html</span>
+                <div class="demo-download">
+                  <span>다운로드</span>
+                  <span class="demo-bar"><span class="demo-bar-fill"></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span class="mock-tool">저장</span>
+            <div class="feature-card">
+              <strong>저장</strong>
+              <p>만든 태그를 브라우저 로컬스토리지에 담아둬요</p>
+              <div class="demo demo-save">
+                <span class="demo-chip">{ 태그 5개 }</span>
+                <span class="demo-toast">저장 완료</span>
+                <div class="demo-storage">
+                  <span class="demo-storage-title">localStorage</span>
+                  <span class="demo-row">ttalkkag : {…}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span class="mock-tool">불러오기</span>
+            <div class="feature-card">
+              <strong>불러오기</strong>
+              <p>저장해 둔 작업을 꺼내 그대로 이어서 만들어요</p>
+              <div class="demo demo-load">
+                <div class="demo-storage">
+                  <span class="demo-storage-title">localStorage</span>
+                  <span class="demo-row">ttalkkag : {…}</span>
+                </div>
+                <div class="demo-blocks">
+                  <span class="demo-block"></span>
+                  <span class="demo-block"></span>
+                  <span class="demo-block"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mock-window">
+          <div class="mock-bar">
+            <span class="mock-dots"></span>
+            <span class="mock-address">my-first-page.html</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-page">
+              <nav class="mock-nav">
+                <strong class="mock-logo">내 첫 페이지</strong>
+                <span class="mock-links">홈 · 소개 · 연락</span>
+              </nav>
+              <div class="mock-hero">
+                <div class="mock-intro">
+                  <strong class="mock-heading">안녕하세요!</strong>
+                  <p class="mock-text">제 첫 웹페이지예요</p>
+                  <span class="mock-button">눌러보기</span>
+                </div>
+                <span class="mock-image">
+                  <svg viewBox="0 0 200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                    <rect class="photo-sky" width="200" height="220"/>
+                    <circle class="photo-sun" cx="140" cy="62" r="24"/>
+                    <ellipse class="photo-cloud" cx="58" cy="60" rx="30" ry="9"/>
+                    <ellipse class="photo-cloud" cx="76" cy="51" rx="18" ry="10"/>
+                    <path class="photo-far" d="M0 150 L45 92 L88 140 L132 96 L200 160 V220 H0 Z"/>
+                    <path class="photo-near" d="M0 182 Q55 140 105 172 T200 168 V220 H0 Z"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="build-code" aria-hidden="true"> <!-- 코드부: 배치할 때마다 코드가 한 줄씩 들어온다 -->
+          <div class="build-code-bar">
+            <span>index.html</span>
+            <span class="build-code-copy">복사</span>
+          </div>
+          <code class="build-code-body">
+            <span class="code-line"><span class="code-punc">&lt;</span><span class="code-tag">body</span><span class="code-punc">&gt;</span></span>
+            <span class="code-line line-insert line-nav">  <span class="code-punc">&lt;</span><span class="code-tag">nav</span> <span class="code-attr">class</span>=<span class="code-value">"menu"</span><span class="code-punc">&gt;</span>홈 · 소개 · 연락<span class="code-punc">&lt;/</span><span class="code-tag">nav</span><span class="code-punc">&gt;</span></span>
+            <span class="code-line line-insert line-h1">  <span class="code-punc">&lt;</span><span class="code-tag">h1</span> <span class="code-attr">class</span>=<span class="code-value">"title"</span><span class="code-punc">&gt;</span>안녕하세요!<span class="code-punc">&lt;/</span><span class="code-tag">h1</span><span class="code-punc">&gt;</span></span>
+            <span class="code-line line-insert line-p">  <span class="code-punc">&lt;</span><span class="code-tag">p</span><span class="code-punc">&gt;</span>제 첫 웹페이지예요<span class="code-punc">&lt;/</span><span class="code-tag">p</span><span class="code-punc">&gt;</span></span>
+            <span class="code-line line-insert line-button">  <span class="code-punc">&lt;</span><span class="code-tag">button</span><span class="code-punc">&gt;</span>눌러보기<span class="code-punc">&lt;/</span><span class="code-tag">button</span><span class="code-punc">&gt;</span></span>
+            <span class="code-line line-insert line-img">  <span class="code-punc">&lt;</span><span class="code-tag">img</span> <span class="code-attr">src</span>=<span class="code-value">"photo.png"</span> <span class="code-attr">alt</span>=<span class="code-value">"풍경"</span><span class="code-punc">&gt;</span></span>
+            <span class="code-line"><span class="code-punc">&lt;/</span><span class="code-tag">body</span><span class="code-punc">&gt;</span></span>
+          </code>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="scene scene-final"> <!-- 4. 마무리 -->
+      <div class="final-glow"></div>
+      <p class="final-kicker">이제 직접 해 볼 차례</p>
+      <div class="final-board">
+        <p class="final-line">
+          <span class="final-word word-1"><span>프</span><span>론</span><span>트</span><span>엔</span><span>드</span><span>를</span></span>
+          <span class="final-space"></span>
+          <span class="final-word word-2"><span class="final-ttalkkag">딸</span><span class="final-ttalkkag">깍</span><span>으</span><span>로</span></span>
+        </p>
+        <p class="final-line">
+          <span class="final-word word-3"><span>누</span><span>구</span><span>든</span><span></span><span>쉽</span><span>게</span></span>
+          <span class="final-space"></span>
+          <span class="final-word word-4"><span class="final-ttalkkag">딸</span><span class="final-ttalkkag">깍</span><span>으</span><span>로</span></span>
+        </p>
+      </div>
+      <div class="final-cta">
+        <a class="hero-start-button final-start-button" href="./src/pages/workspace.html">
+          프로젝트 시작하기 ↗
+        </a>
+      </div>
+      <div class="final-marquee marquee-top" aria-hidden="true">
+        <div class="marquee-track">
+          <span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span>
+          <span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span>
+        </div>
+      </div>
+      <div class="final-marquee marquee-bottom" aria-hidden="true">
+        <div class="marquee-track">
+          <span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span>
+          <span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span><span>TTALKKAG</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="scene-dots" aria-hidden="true">
+      <span class="scene-dot is-current"></span>
+      <span class="scene-dot"></span>
+      <span class="scene-dot"></span>
+      <span class="scene-dot"></span>
+      <span class="scene-dot"></span>
+    </div>
   </main>
-  <script src="./src/js/index.js"></script>
+  <script src="./src/js/intro.js"></script>
 </body>
 </html>

@@ -1,1 +1,43 @@
-/* canvas.css — 렌더링부 (호버 시 삽입 공간 벌어지는 효과 포함) */
+/* canvas.css — 태그 미리보기와 포인터 고스트 */
+
+.tag-preview {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  color: var(--text);
+}
+
+.tag-preview [data-ddalkkak-preview="true"] {
+  max-width: 100%;
+  outline: 1px dashed var(--border-strong);
+  outline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.tag-preview img[data-ddalkkak-preview="true"] {
+  max-height: 3.5rem;
+  object-fit: contain;
+}
+
+.placement-ghost {
+  position: fixed !important;
+  z-index: 10000 !important;
+  max-width: min(16rem, 45vw);
+  margin: 0 !important;
+  padding: 0.35rem 0.5rem !important;
+  border: 1px dashed var(--accent-red) !important;
+  border-radius: var(--radius);
+  outline: none !important;
+  background: var(--bg-panel) !important;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.35);
+  color: var(--text) !important;
+  opacity: 0.82;
+  pointer-events: none !important;
+  overflow-wrap: anywhere;
+}
+
+.placement-ghost img {
+  max-width: 8rem;
+  max-height: 4rem;
+  object-fit: contain;
+}

@@ -33,6 +33,39 @@
   --danger:            var(--accent-red);         /* 초기화 확인 모달의 확정 버튼만. 상단 [초기화] 자체는 무채색 유지 */
   --focus-ring:        var(--accent-blue);        /* input, button, 태그 리스트 키보드 포커스 outline */
 
+  /* ========== intro — 소개 페이지(index.html) 떠다니는 장식 전용. 다른 곳에서 쓰지 말 것 ==========
+     다크 바탕용 네온. 채도는 살리고 명도는 한 톤 눌러서 눈부시지 않게 */
+  --intro-cyan:        #3ce8ff;                   /* <h1> 칩, 미리보기 카드 테두리 */
+  --intro-magenta:     #f05bff;                   /* <button> 칩 */
+  --intro-lime:        #a8ff3e;                   /* { } 칩, 미리보기 밑줄 */
+  --intro-violet:      #8f7bff;                   /* CLICK! 스티커 바탕 */
+  --intro-yellow:      #ffe94a;                   /* DRAG & DROP 점선 */
+  --intro-ink:         #0b0820;                   /* 장식 글자, 굵은 테두리 */
+  --intro-paper:       #f2f2f2;                   /* 미리보기 카드 바탕 */
+  --intro-h1-side:      #74C0FC;                  /* <h1> 입체 옆면 */
+  --intro-button-side:  #FF8787;                  /* <button> 입체 옆면 */
+  --intro-attr-side:    #63E6BE;                  /* { } 입체 옆면 */
+  --intro-preview-side: #f5f374;                  /* PREVIEW 카드 입체 옆면 */
+  --intro-click-side:   #f2f2f2;                  /* CLICK! 입체 옆면 */
+  --intro-drag-side:    #f2f2f2;                  /* DRAG & DROP 입체 옆면 */
+  --intro-mac-red:      #ff5f57;                  /* 가상 창 신호등 빨강 */
+  --intro-mac-yellow:   #febc2e;                  /* 가상 창 신호등 노랑 */
+  --intro-mac-green:    #28c840;                  /* 가상 창 신호등 초록 */
+  --intro-scarlet:      #ff4d2e;                  /* 마지막 장면 "딸깍" 다홍색 */
+  --intro-scarlet-dim:  rgba(255, 77, 46, 0.18);  /* 마지막 장면 "딸깍" 뒤 다홍 백라이트 */
+  --intro-code-punc:    #808080;                  /* X-ray 코드 < > / 기호 (VS Code 다크) */
+  --intro-code-tag:     #569cd6;                  /* X-ray 코드 태그 이름 */
+  --intro-code-attr:    #9cdcfe;                  /* X-ray 코드 속성 이름 */
+  --intro-code-value:   #ce9178;                  /* X-ray 코드 속성 값 */
+  --intro-code-text:    #d4d4d4;                  /* X-ray 코드 본문 글자 */
+  --intro-code-comment: #6a9955;                  /* X-ray 코드 주석 */
+  --intro-code-selector:#d7ba7d;                  /* X-ray 코드 CSS 선택자 */
+  --intro-code-func:    #dcdcaa;                  /* X-ray 코드 함수 이름 */
+  --intro-photo-sky:    #a9d8f5;                  /* 가상 페이지 사진: 하늘 */
+  --intro-photo-sun:    #ffd25e;                  /* 가상 페이지 사진: 해 */
+  --intro-photo-far:    #6f9f7f;                  /* 가상 페이지 사진: 먼 산 */
+  --intro-photo-near:   #2f5d46;                  /* 가상 페이지 사진: 가까운 언덕 */
+
   /* ========== layout ========== */
   --radius:            0.25rem;                   /* 버튼, 입력, 작은 칩. 패널 외곽은 0에 가깝게 가도 됨 */
   --toolbar-h:         3.5rem;                    /* 상단바 높이 */
@@ -40,3 +73,4 @@
   --taglist-w:         11.25rem;                  /* "태그 선택" 열 너비 */
   --make-w:            4.5rem;                    /* 오른쪽 "제작" 열 너비 */
 }
+

@@ -1,1 +1,158 @@
-/* attributes.css — 태그 속성 편집 부 */
+/* attributes.css — 속성 조립 패널 (기본 속성 최대 7개 + 사용자 속성 3개가 스크롤 없이 한 화면에) */
+
+.attr-panel {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--text);
+}
+
+.attr-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.attr-panel-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.attribute-add-button {
+  height: 2rem;
+  padding: 0 0.7rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.attribute-add-button:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+
+.attribute-add-button:disabled {
+  color: var(--text-faint);
+  background: transparent;
+}
+
+/* 속성 칸: 화면 너비에 따라 4~5칸씩 줄을 채움 */
+.attribute-editor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  gap: 0.4rem 0.6rem;
+}
+
+.attribute-editor-row,
+.tag-content-field {
+  height: 2rem;
+  padding: 0 0.2rem 0 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.attribute-editor-row:focus-within,
+.tag-content-field:focus-within {
+  border-color: var(--focus-ring);
+}
+
+/* 속성 이름: 글자 길이만큼만 차지 */
+.attribute-name-input {
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 0;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.attribute-equal {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+/* 속성 값: 남은 너비를 모두 사용 */
+.attribute-value-input,
+.tag-content-input {
+  flex: 1;
+  min-width: 0;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text);
+  background: var(--bg-input);
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.attribute-name-input:focus-visible,
+.attribute-value-input:focus-visible,
+.tag-content-input:focus-visible {
+  outline: none;
+}
+
+.attribute-remove-button {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text-faint);
+  background: transparent;
+  border: none;
+}
+
+.attribute-remove-button:hover {
+  color: var(--accent-red-hover);
+  background: var(--accent-red-dim);
+}
+
+/* 태그 내용: 속성 칸 두 개 너비, 두 줄 높이 */
+.tag-content-field {
+  grid-column: span 2;
+  height: 3rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.55rem;
+  align-items: stretch;
+}
+
+.tag-content-field .tag-content-label {
+  padding-top: 0.25rem;
+}
+
+textarea.tag-content-input {
+  height: auto;
+  padding: 0.25rem 0.4rem;
+  line-height: 1.4;
+  resize: none;
+}
+
+.tag-content-label {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tag-content-field.is-empty {
+  height: 2rem;
+  align-items: center;
+  background: transparent;
+  border-style: dashed;
+}
+
+.tag-content-field.is-empty .tag-content-label {
+  color: var(--text-faint);
+}

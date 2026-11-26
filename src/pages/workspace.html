@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/palette.css" />
+    <link rel="stylesheet" href="../css/attributes.css" />
+    <link rel="stylesheet" href="../css/canvas.css" />
   </head>
   <body>
     <header>
@@ -31,7 +34,6 @@
       />
       <!-- 프로젝트 이름 -->
       <div class="toolbar-actions">
-        <!-- 새 탭 / 내보내기 / 저장 / 불러오기 / 초기화 버튼 -->
         <button class="toolbar-btn" data-action="new-tab">
           <img
             class="btn-icon"
@@ -46,35 +48,42 @@
             alt="내보내기"
           />내보내기
         </button>
-        <button class="toolbar-btn" data-action="save">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/save.svg"
-            alt="저장"
-          />저장
-        </button>
-        <button class="toolbar-btn" data-action="load">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/load.svg"
-            alt="불러오기"
-          />불러오기
-        </button>
-        <button class="toolbar-btn" data-action="reset">
-          <img
-            class="btn-icon"
-            src="../../assets/icons/reset.svg"
-            alt="초기화"
-          />초기화
-        </button>
+
+        <details class="toolbar-menu">
+          <!-- 저장 / 불러오기 / 초기화는 메뉴 안에 -->
+          <summary class="toolbar-btn toolbar-menu-button" aria-label="메뉴 더 보기">
+            <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </summary>
+          <div class="toolbar-menu-list">
+            <button class="toolbar-menu-item" type="button" data-action="save">
+              <img src="../../assets/icons/save.svg" alt="" />저장
+            </button>
+            <button class="toolbar-menu-item" type="button" data-action="load">
+              <img src="../../assets/icons/load.svg" alt="" />불러오기
+            </button>
+            <button class="toolbar-menu-item" type="button" data-action="reset">
+              <img src="../../assets/icons/reset.svg" alt="" />초기화
+            </button>
+          </div>
+        </details>
+
+        <a
+          class="toolbar-btn"
+          data-action="dashboard"
+          href="./dashboard.html"
+          title="대시보드로 이동합니다."
+        >
+          <img class="btn-icon" src="../../assets/icons/dashboard.svg" alt="" />대시보드
+        </a>
       </div>
     </header>
     <hr id="header-divider" />
     <main>
       <section class="controls">
         <!-- 태그 선택 / 속성 편집 / 제작 영역 -->
-        <!-- 💡 좌측 태그 목록: no-scrollbar 클래스 추가 -->
-        <aside class="tag-list no-scrollbar">
+        <aside class="tag-list">
           <!-- html 태그 종류 (좌측 목록) -->
           <div class="tag-category"></div>
           <div class="tag-chip"></div>
@@ -82,8 +91,7 @@
 
         <section class="workspace">
           <!-- 속성 편집 & 태그 제작 -->
-          <!-- 💡 속성 편집 패널: no-scrollbar 클래스 추가 -->
-          <div class="attr-panel no-scrollbar"></div>
+          <div class="attr-panel"></div>
           <div class="preview-make">
             <!-- 태그 미리보기 및 제작 영역 -->
             <div class="tag-preview"></div>
@@ -95,31 +103,34 @@
       <section class="output">
         <!-- 결과 확인 영역 -->
         <div class="render-pane">
-          <button class="pane-btn" type="button">새 탭</button>
+          <iframe id="html-preview" src="about:blank"></iframe>
         </div>
         <div class="splitter"></div>
-        <!-- 💡 우측 코드 창: no-scrollbar 클래스 추가 -->
-        <div class="code-pane no-scrollbar">
+        <div class="code-pane">
           <button class="pane-btn" type="button" data-action="copy-code">
             복사
           </button>
+
+          <!-- 코드 창 전체 -->
+          <div class="code-window">
+            <!-- 실제 스크롤 영역 -->
+            <div class="code-editor">
+              <div id="line-numbers"></div>
+              <pre data-selectable="true"><code id="code-output"></code></pre>
+            </div>
+
+            <!-- 코드 창 중앙에 표시되는 메시지 -->
+            <div id="copy-message"></div>
+          </div>
         </div>
       </section>
     </main>
-  </body>
-      </section>
 
-    <section class="output"> <!-- 결과 확인 영역 -->
-      <div class="render-pane">
-        <button class="pane-btn" type="button">새 탭</button>
-      </div>
-      <div class="splitter"></div>
-      <div class="code-pane">
-        <button class="pane-btn" type="button" data-action="copy-code">복사</button>
-      </div>
-    </section>
-  </main>
-  <script type="module" src="../js/util/codeGenerator.js"></script>
-  <script type="module" src="../js/main.js"></script>
-</body>
+    <script src="../js/header.js"></script>
+    <script type="module" src="../js/util/codeGenerator.js"></script>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/util/splitter.js"></script>
+    <script type="module" src="../js/util/profile.js"></script>
+  </body>
 </html>
+

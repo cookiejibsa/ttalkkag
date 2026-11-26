@@ -42,21 +42,58 @@ main {
 }
 
 .attr-panel {
-  height: 100%;
-  overflow: scroll;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
   background: var(--bg-panel-alt);
 }
 
+/* 미리보기 + 제작 버튼: 어떤 태그를 골라도 높이 고정 */
 .preview-make {
+  flex-shrink: 0;
   display: flex;
-  height: 5rem;
+  height: 3.2rem;
   border-top: 1px solid var(--border);
 }
 
 .tag-preview {
   width: 80%;
-  overflow: scroll;
+  height: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   background: var(--bg-panel);
+}
+
+.tag-preview > * {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* 제작 후 배치 중: 렌더링부를 눌러 원하는 자리에 넣는다 */
+.render-pane.is-placing {
+  cursor: copy;
+  outline: 2px dashed var(--pointer);
+  outline-offset: -4px;
+}
+
+.render-pane.is-placing iframe {
+  pointer-events: none;
+}
+
+/* 배치 중 태그가 들어갈 자리 표시선 */
+.insert-line {
+  position: absolute;
+  z-index: 5;
+  height: 0;
+  display: none;
+  border-top: 2px dashed var(--pointer);
+  pointer-events: none;
+}
+
+.render-pane.is-placing .insert-line.is-visible {
+  display: block;
 }
 
 .make-action {
@@ -89,19 +126,44 @@ main {
   background: var(--bg-app);
 }
 
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 미리보기는 브라우저 기본 렌더링 그대로: 흰 바탕, 검은 글씨, 기본 태그 디자인 */
+#html-preview {
+  background: Canvas;
+  color-scheme: light;
+}
+
 .code-pane {
   background: var(--bg-panel);
 }
 
 .splitter {
+  z-index: 10;
+  position: relative;
   width: 0.4rem;
+  flex-shrink: 0;
   cursor: col-resize;
   background: var(--border-strong);
+  align-items: center;
 }
 
 .splitter:hover,
 .splitter.is-dragging {
   background: var(--accent-blue);
+}
+.splitter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.4rem;
+  right: -0.4rem;
+  cursor: col-resize;
 }
 
 .pane-btn {
@@ -113,10 +175,6 @@ main {
   padding: 0 0.75rem;
   font-weight: bold;
   background: var(--bg-chrome);
-}
-
-.render-pane > .pane-btn {
-  right: 1rem;
 }
 
 .pane-btn[data-action="copy-code"] {
@@ -144,4 +202,156 @@ main *::-webkit-scrollbar,
 .attr-panel::-webkit-scrollbar,
 .code-pane::-webkit-scrollbar {
   display: none !important; /* 크롬, 사파리 계열 강제 적용 */
+}
+
+/* 코드 출력 영역 */
+.code-editor {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: #1e1e1e;
+}
+
+/* 줄 번호 */
+#line-numbers {
+  flex-shrink: 0;
+  padding: 16px 10px;
+  color: #858585;
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid #444;
+  line-height: 1.5;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+}
+
+/* 코드 영역: 드래그해서 선택·복사 가능 */
+.code-pane pre {
+  cursor: text;
+  margin: 0;
+  padding: 16px;
+  white-space: pre;
+  line-height: 1.5;
+  overflow: visible;
+}
+
+.code-pane code {
+  font-family: Consolas, monospace;
+  font-size: 14px;
+}
+
+/* HTML 문법 색상 */
+[data-token="tag"] {
+  color: #569cd6;
+}
+
+[data-token="attribute"] {
+  color: #9cdcfe;
+}
+
+[data-token="string"] {
+  color: #ce9178;
+}
+
+[data-token="comment"] {
+  color: #6a9955;
+}
+
+/* 코드 창 전체 */
+.code-window {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 실제 코드 스크롤 영역 */
+.code-editor {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: #1e1e1e;
+}
+
+/* 코드 창 중앙 복사 메시지 */
+#copy-message {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 12px 20px;
+  background: rgba(40, 40, 40, 0.95);
+  color: #4ade80;
+  border: 1px solid #4ade80;
+  border-radius: 8px;
+  font-size: 14px;
+
+  z-index: 10;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* 메시지 등장 애니메이션 */
+#copy-message.show {
+  display: block;
+  animation: copyPopup 1.5s ease forwards;
+}
+
+@keyframes copyPopup {
+  /* 투명한 상태에서 등장 */
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 불투명하게 나타남 */
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 0.5초 대기 */
+  65% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 위로 올라가며 사라짐 */
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+}
+
+/* 코드 영역 전체 */
+.code-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 코드 창 전체 */
+.code-window {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: #1e1e1e;
+  overflow: hidden;
+}
+
+/* 실제 코드 스크롤 영역 */
+.code-editor {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  background: #1e1e1e;
 }
