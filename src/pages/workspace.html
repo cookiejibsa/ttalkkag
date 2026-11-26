@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/palette.css" />
+    <link rel="stylesheet" href="../css/attributes.css" />
+    <link rel="stylesheet" href="../css/canvas.css" />
   </head>
   <body>
     <header>
@@ -94,20 +97,30 @@
         <!-- 결과 확인 영역 -->
         <div class="render-pane">
           <button class="pane-btn" type="button">새 탭</button>
-          <iframe name="content" src="about:blank"></iframe>
+          <iframe id="html-preview" src="about:blank"></iframe>
         </div>
         <div class="splitter"></div>
         <div class="code-pane">
           <button class="pane-btn" type="button" data-action="copy-code">
             복사
           </button>
+
+          <!-- 코드 창 전체 -->
+          <div class="code-window">
+            <!-- 실제 스크롤 영역 -->
+            <div class="code-editor">
+              <div id="line-numbers"></div>
+              <pre><code id="code-output"></code></pre>
+            </div>
+
+            <!-- 코드 창 중앙에 표시되는 메시지 -->
+            <div id="copy-message"></div>
+          </div>
         </div>
       </section>
     </main>
-    <script src="/src/js/header.js"></script>
-  </body>
-      </section>
 
+<<<<<<< HEAD
     <section class="output"> <!-- 결과 확인 영역 -->
       <div class="render-pane">
         <button class="pane-btn" type="button">새 탭</button>
@@ -121,6 +134,6 @@
   <script type="module" src="../js/util/codeGenerator.js"></script>
   <script type="module" src="../js/main.js"></script>
   <script type="module" src="../js/util/splitter.js"></script>
-  <script type="module" src="../js/util/profile.js"></script>
+  <script type="module" src="../js/util/profile.js"></script> 
 </body>
-</html>
+
