@@ -27,30 +27,79 @@ main {
   display: none;
   position: absolute;
 }
-.camera {
-  opacity:0;
-  position: absolute;
-  margin-top:-6rem;
-  flex-shrink: 0;
-  padding:0;
+
+.avatar-control {
+  position: relative;
+  flex: 0 0 6rem;
   width: 6rem;
   height: 6rem;
+}
+
+.avatar-upload {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.camera {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: var(--bg-hover);
   border: 1px solid var(--border-strong);                                                                                                                                                                                
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
 }
-.camera:hover {
-  opacity:0.6;                                                                                                                                                                           
+
+.avatar-upload:hover .camera,
+.avatar-upload:focus-visible .camera {
+  opacity: 0.65;
 }
 
 .profile-avatar {
-  flex-shrink: 0;
-  padding:0;
-  width: 6rem;
-  height: 6rem;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
   background: var(--bg-hover);
   border: 1px solid var(--border-strong);
+}
+
+.avatar-remove {
+  position: absolute;
+  right: -0.25rem;
+  bottom: -0.25rem;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 2px solid var(--bg-panel);
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg-panel);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.avatar-remove:hover {
+  background: var(--text-muted);
+}
+
+.avatar-remove:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.avatar-remove[hidden] {
+  display: none;
 }
 
 #profile-name {
